@@ -12,8 +12,8 @@
 #let CsqP = $"Csq"_PP$
 #let CsqL = $"Csq"_L$
 #let VFP = $"VF"_PP$
-#let sl = $angle.l$
-#let sr = $angle.r$
+#let sl = $chevron.l$
+#let sr = $chevron.r$
 #let cR = $cal(R)$
 #let cF = $cal(F)$
 #let cA = $cal(A)$
@@ -227,7 +227,7 @@ _Formule_ jazyka $L$ jsou konečné nápisy definovány induktivně:
 
 _Výskyt_ proměnné $x$ je _vázaný_, pokud se nachází v podvýroku (podstromu) začínajícím $(Q x)$.
 
-Formule je _otevřená_, neobsahuje-li žádný kvantifikátor a _uzavřená_, neboli _sentence_, pokud nemá žádnou volnou proměnnou.
+Formule je _otevřená_, neobsahuje-li žádný kvantifikátor a _uzavřená_, neboli _sentence_, pokud nemá žádnou _volnou proměnnou_ (opak vázané).
 
 Každá atomická formule je otevřená, otevřená formule je jen kombinací atomických formulí a logických spojek. Formule může být otevřená i uzavřená zároveň, v tom případě jsou všechny její termy konstantní.
 
@@ -235,7 +235,7 @@ Každá atomická formule je otevřená, otevřená formule je jen kombinací at
 
 _Model jazyka_ $L$, či _$L$-struktura_ je libovolná struktura v signatuře jazyka $L$. Třídu všech modelů označíme $M_L$.#footnote[Musíme říkat třída, protože neexistuje množina všech množin.]<trida>
 
-Mějme term $t$ jazyka $L = sig$ (s rovností či bez), a $L$-strukturu $cA = struct$. _Ohodnocení proměnných_ v množině $cA$ je libovolná funkce $e: Var arrow A$. (Za proměnnou "dosazuji" libovolný prvek univerza)
+Mějme term $t$ jazyka $L = sig$ (s rovností či bez), a $L$-strukturu $cA = struct$. _Ohodnocení proměnných_ v množině $A$ je libovolná funkce $e: Var arrow A$. (Za proměnnou "dosazuji" libovolný prvek univerza)
 
 _Hodnota termu_ $t$ ve struktuře $cA$ při ohodnocení $e$, kterou značíme $t^cA [e]$ je dána induktivně:
 - $x^cA [e] = e(x)$ pro proměnnou $x in Var$
@@ -399,6 +399,40 @@ Input: sentence φ
 ```
 
 = Lehké otázky
+
+== (L1) Množinu modelů nad konečným jazykem lze axiomatizovat výrokem v CNF, výrokem v DNF.
+
+Mějme konečný jazyk $PP$ a libovolnou $M subs MP$. Pak existují $phi_"DNF" "a" phi_"CNF"$ takové, že $M = MP(phi_"DNF") = MP(phi_"CNF")$; konkrétně:
+
+$ phi_"DNF" = or.big_(v in M) and.big_(p in PP) p^(v(p)) $
+$ phi_"CNF" = and.big_(v in overline(M)) or.big_(p in PP) overline(p^(v(p))) = and.big_(v in.not M) or.big_(p in PP) p^(1 - v(p)) $
+
+_Důkaz_: Pro DNF, každá elementární konjunkce popisuje jeden model. CNF je duální k $phi_"DNF"$ sestrojenému pro doplněk $M' = overline(M)$; každá klauzule v konjunkci "zakazuje jeden nemodel". Každý výrok má svoji pravdivostní funkci, pro kterou zvládneme jednotlivým popisem/zákazem modelu/nemodelu vytvořit správnou formuli.
+
+== (L2) 2-SAT, algoritmus implikačního grafu, jeho korektnost
+
+2-SAT je sat kde má každá klauzule nejvýše dva literály. 2-klauzuli $cl_1 or cl_2$ lze chápat jako implikace $cln_1 impl cl_2 "a" cln_2 impl cl_1$. Implikační graf je graf, kde vrcholy jsou literály a hrany jsou dány implikacemi. Chceme najít komponenty silné souvislosti v tomto grafu, neboť všechny literály v této komponentě musí být ohodnoceny stejně (jinak by se nám rozbil implikační řetízek). Dvojice opačných literálů v jedné komponentě tedy znamená nesplnitelnost.
+
+Výrok $phi$ je splnitelný, když v implikačním grafu komponenta silné souvislosti neobsahuje $cln "a" cl$
+
+_Důkaz_: Mějme implikační graf $G_phi$. Vytvořme $G_phi^*$ _kontrakcí_ komponent silné souvislosti (čímž odstraníme cykly). $G_phi^*$ je DAG, zvolme na něm topologické uspořádání. Pak vždy volím první neohodnocenou komponentu a nastavím literály v ní na 0. Proč pak $phi$ platí?
+
+Jednotková klauzule musí platit, protože v $G_phi$ máme $cln impl cl$ a tato hrana je i v $G_phi^*$, tudíž v topologickém uspořádání $cln$ předchází $cl$.
+
+Podobně pro 2-klauzule. Pokud mám $cl_1 or cl_2$, tak v $G_phi$ je $cln_1 impl cl_2 "a" cln_2 impl cl_1$. Pokud jsme $l_1$ ohodnotili dříve, pak to kvůli topologickému uspořádání bylo $cln_1 = 0$, tedy $cl_1$ platí. Podobně i v opačném případě.
+
+== (L3) Horn-SAT, Algoritmus jednotkové propagace, jeho korektnost
+
+Viz (P8) co to je Horn-SAT. Algoritmus vypadá následovně:
+
+`IN`: $phi$ v Horn-SAT. `OUT`: Model, nebo informace, že neexistuje
+
+1. Pokud $phi$ obsahuje (jednotkové klauzule) $cl "i" cln$, pak není splnitelný
+2. Pokud $phi$ neobsahuje jednotkovou klauzuli, ohodnoť všechny zbývající proměnné 0 (konec)
+3. Pokud $phi$ obsahuje jednotkovou klauzuli $cl$, ohodnoť $cl = 1$, proveď _jednotkovou propagaci_, nahraď $phi$ výrokem $phi^cl$
+4. Opakuj
+
+// todo: proof
 
 == (L7) Věta o kompaktnosti a její aplikace <L7>
 
