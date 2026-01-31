@@ -213,11 +213,11 @@ Do jazyka *nepatří* universum.
 
 _Termy_ jazyka $L$ jsou konečné nápisy definované induktivně:
 - každá proměnná a každý konstantní symbol z $L$ je term
-- je li $f$ funkční symbol z $L$ arit $n$ a jsou-li $t_1, dots, t_n$ termy, potom nápis $f(t_1, dots, t_n)$ je také term
+- je-li $f$ funkční symbol z $L$ arit $n$ a jsou-li $t_1, dots, t_n$ termy, potom nápis $f(t_1, dots, t_n)$ je také term
 
 Term tedy nemůže obsahovat relaci. Pokud term neobsahuje proměnnou, říkáme mu _konstantní_ či _ground_.
 
-_Atomická formule_ jazyka $L$ je nápis $R(t_1, dots, t_n)$ kde $R$ je n-ární relaní symbol z $L$ (včetně $=$ je-li to jazyk s rovností) a $t_1 in text("Term")_L$. Často používáme infixový zápis, např. $t_1 <= t_2$.
+_Atomická formule_ jazyka $L$ je nápis $R(t_1, dots, t_n)$ kde $R$ je n-ární relační symbol z $L$ (včetně $=$ je-li to jazyk s rovností) a $t_i in text("Term")_L$. Často používáme infixový zápis, např. $t_1 <= t_2$.
 
 _Formule_ jazyka $L$ jsou konečné nápisy definovány induktivně:
 - každá atomická formula jazyka $L$ je formule
