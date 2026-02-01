@@ -554,7 +554,7 @@ g("c0", "c1")  # -> "g(c0, c1)"
 # Stejně tak třeba "g(g(c1, c1), c0)" bude.
 ```
 
-== (T5) Věta o končnosti sporu, důsledky o konečnosti a systematičnosti důkazů
+== (T5) Věta o konečnosti sporu, důsledky o konečnosti a systematičnosti důkazů
 
 Konečnost sporu: Je-li $union.big_(i>=0) tau_i$ sporné tablo, potom existuje $n in NN$ takové, že $tau_n$ je sporné _konečné_ tablo.
 
@@ -571,3 +571,19 @@ Systematické tablo: Vstup: uspořádaná teorie $T = {alpha_1, alpha_2, ...}$, 
 - Pokud jsou všechny větve sporné#footnote[Tahle podmínka možná není správně, Systematičnost důkazu sice tvrdí, že tablo je konečné, ale skripta neříkají, kdy se má algoritmus zastavit. Navíc pokud je teorie nekonečná a vstup není sporný, algoritmus se nezastaví nikdy, jak naznačuje podmínka v Konečnosti sporu.]: skončili jsme, máme systematický tablo důkaz
 // viz Rozhodnutelnost, tam je podobná věc "buď vrátí ano, nebo nedoběhne"
 - Opakujeme
+
+== (T6) Věta o úplnosti rezoluce ve výrokové logice
+
+Je-li formule $S$ (v CNF množinové reprezentaci) nesplnitelná, je rezolucí zamítnutelná. $S tack_R square$.
+
+Důkaz indukcí podle počtu proměnných od $|Var(S)|$ směrem k nule. Podle věty o kompaktnosti, BÚNO $S$ je konečná.
+
+== (T7) [WIP] Věta o úplnosti rezoluce v predikátové logice
+
+Je-li CNF formule $S$ nesplnitelná, potom je zamítnutelná rezolucí.
+
+Lifting lemma: Pro klauzule $C_1$ a $C_2$ s disjunktními množinami proměnných#footnote[Proměnná reprezentuje prvek z univerza, nejedná se o atomický výrok.], pro jejich základní instance $C_1^*$ a $C_2^*$, pro jejich rezolventu $C^*$: existuje rezolventa $C$ klauzulí $C_1$ a $C_2$ taková, že $C^*$ je základní instance $C$.
+
+Základní instance: Pro otevřenou formuli $phi$ proměnných $x_1, ..., x_n$: instance $phi(x_1 slash t_1, ..., x_n slash t_n)$ je _základní instance_, jsou-li termy $t_1, ..., t_n$ konstantní. ${x_1 slash t_1, ..., x_n slash t_n}$ nazýváme _základní substituce_.
+
+Základní instance umožňuje převést výraz z predikátové logiky do výrokové nahrazením atomických sentencí za atomické výroky. Lifting lemma to aplikuje na klauzule a jejich rezolventy.#footnote[Moc tomu nerozumim no.]
