@@ -80,7 +80,46 @@ _Důkaz_: Nechť $S scripts(tack)_R square$ a důkaz $C_0, C_1, dots, C_n = squa
 
 - pro $i = 0$ platí, neb $C_0 in S$
 - pro $i > 0$ nastanou dva případy:
-  - $C_i in S$
+  - $C_i in S$, pak $cV models C_i$ z předpokladu $cV models S$
+  - $C_i$ je rezolventou $C_j, C_k "kde" j,k < i$. Z indukčního předpokladu víme $cV models C_j "a" cV models C_k$. $cV models C_i$ plyne z korektnosti rezolučního pravidla.#footnote[Ve skriptech je to do "dokázáno" jako pozorování co přímo plyne z definice.]
+
+== (L9) Korektnost rezoluce v predikátové logice
+
+Mějme $C_1, C_2$ a jejich rezolventu $C$. Platí-li ve struktuře $cA$ klauzule $C_1, C_2$, platí v ní i $C$.
+
+_Důkaz:_ Z rezolučního pravidla víme $C = C'_1 sigma union C'_2 sigma$, kde $sigma$ je nejobecnější unifikace množiny výrazů $S = {A_1, dots, A_n, B_1, dots, B_n}$, neboli $S sigma = {A_1 sigma}$. Protože $C_1, C_2$ jsou otevřené formule platné v $cA$, platí v $cA$ i jejich instance po substituci $sigma$, tj. $cA models C_1 sigma$ a $cA models C_2 sigma$. Víme také $C_1 sigma = C'_1 sigma union {A_1 sigma}$ a podobně $C_2 sigma = 2'_1 sigma union {not A_1 sigma}$. // wtf?
+
+Chceme ukázat $cA models C[e]$ pro libovolné ohodnocení $e$. Pokud $cA models A_1 sigma[e]$, potom $cA tack.r.double.not not A_1 sigma[e]$ a musí být $cA models C'_2 sigma[e]$. Tedy i $cA models C[e]$. V opačném případě $cA tack.r.double.not A_1 sigma[e] dots$ pak opět $cA models C[e]$.
+
+Korektnost je stejná jako v (L8).
+
+== (L10) Nestandardní model
+
+Nechť $underline(NN) = sl NN, S, +, dot, 0, <= sr$ je standardní model přirozených čísel. $Th(underline(NN))$ je množina všech sentencí pravdivých v $underline(NN)$. Pro $n in NN$ definujeme n-tý numerál jako term $n = S(S(dots (S(0)) dots))$. Vezměme nový konstantní symbol $c$ a vyjádřeme, že je ostře větší než každý n-tý numerál:#footnote[Znaménko $<$ přitom není v jazyce, takže nevím, jak jde tohle udělat? Idk takhle to je ve skriptech.] $ T = Th(underline(NN) union {underline(n) < c | n in NN}) $
+
+Každá konečná část teorie $T$ má model. Z (L7) tedy plyne, že i $T$ má model.
+
+== (L11) Existence algebraického spočetného tělesa
+
+$cA$ je algebraicky uzavřené, pokud každý polynom nenulového stupně v něm má kořen. Např. $RR$ není, protože $x^2 + 1 = 0$; $CC$ už je.
+
+Algebraickou uzavřenost lze vyjádřit $psi_n$ pro každé $n > 0$:
+
+$ (forall x_(n-1))dots(forall x_0)(exists y)(y^n + x_(n-1) dot y^(n-1) + dots + x_1 dot y + x_0) = 0 $
+
+_Důkaz:_ Dle Löwenheim-Skolemovy věty s rovností (T10) "Je-li $L$ spočetný jazyk s rovností, pak ke každé nekonečné $L$-struktuře existuje elementárně ekvivalentní spočetně nekonečná struktura.": Najdeme spočetnou $cB equiv cA$. Protože v $cA$ platí pro každé $n in NN$ sentence "existuje alespoň $n$ prvků", což lze pomocí rovnosti snadno zapsat, platí tato sentence i v $cB$, $cB$ tedy nemůže být konečná a musí být spočetně nekonečná.
+
+Tedy existuje spočetně nekonečná struktura $cA equiv CC$. Protože $CC$ je těleso a splňuje sentence $psi_n$ pro všechna $n > 0$, je i $cA$ algebraicky uzavřené těleso.
+
+== (L12) Kritérium otevřené axiomatizovatelnosti.
+
+Pokud je teorie $T$ otevřeně axiomatizovatelná, potom je každá podstruktura modelu $T$ také modelem $T$.
+
+_Důkaz:_ Nechť $T$ je otevřená axiomatizace $T$. Mějme model $cA models T'$ a podstrukturu $cB subs cA$. Pro každou formuli $phi in T'$ platí $cB models phi$ (protože $cB subs cA$ má tytéž relace a funkce, resp. podstruktura zachovává atomické vlastnosti), neboť je $phi$ otevřená, tedy i $cB models T$.
+
+== (L13) Rekurzivně axiomatizovaná teorie je částečně rozhodnutelná, kompletní je rozhodnutelná
+
+== (L14) Teorie konečné struktury v končném jazyce s rovností je rozhodnutelná
 
 == (L15) Gödelovy věty neúplnosti
 
