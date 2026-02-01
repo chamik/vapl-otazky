@@ -553,3 +553,21 @@ g("c0", "c1")  # -> "g(c0, c1)"
 # Jak "c0", tak "c1" i "g(c0, c1)" jsou prvky univerza.
 # Stejně tak třeba "g(g(c1, c1), c0)" bude.
 ```
+
+== (T5) Věta o končnosti sporu, důsledky o konečnosti a systematičnosti důkazů
+
+Konečnost sporu: Je-li $union.big_(i>=0) tau_i$ sporné tablo, potom existuje $n in NN$ takové, že $tau_n$ je sporné _konečné_ tablo.
+
+Konečnost důkazu: Pokud $T tack phi$, potom existuje i _konečný_ tablo důkaz $phi$ z $T$.
+
+Systematičnost důkazu: Pokud $T tack phi$, potom _systematické_ tablo je konečným tablo důkazem $phi$ z $T$.
+
+Tedy pokud dojdeme ke sporu, bude to po konečně mnoha krocích. Dokonce i v případě, kdy je teorie nekonečná. Systematické tablo je algoritmus, který takové tablo sestrojí.
+
+Systematické tablo: Vstup: uspořádaná teorie $T = {alpha_1, alpha_2, ...}$, počáteční položka $R$ (typicky F$phi$).
+- $P =$  nejvyšší nejlevější neredukovaná položka na bezesporné větvi
+- Pokud jsme našli $P$: redukujeme $P$ přidáním atomického tabla na každou bezespornou větev pod~$P$
+- Pokud ještě zbývá axiom $alpha_i$ z $T$: na každou bezespornou větev připojíme T$alpha_i$
+- Pokud jsou všechny větve sporné#footnote[Tahle podmínka možná není správně, Systematičnost důkazu sice tvrdí, že tablo je konečné, ale skripta neříkají, kdy se má algoritmus zastavit. Navíc pokud je teorie nekonečná a vstup není sporný, algoritmus se nezastaví nikdy, jak naznačuje podmínka v Konečnosti sporu.]: skončili jsme, máme systematický tablo důkaz
+// viz Rozhodnutelnost, tam je podobná věc "buď vrátí ano, nebo nedoběhne"
+- Opakujeme
