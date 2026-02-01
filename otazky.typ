@@ -153,7 +153,7 @@ Výrok je _hornovský_, pokud je konjunkcí hornovských klauzulí, tj. klauzul�
 $ not p_1 or not p_2 or dots or not p_n or q ~ (p_1 and p_2 and dots and p_n) impl q $
 
 Hornovské výroky tedy dobře modelují systémy, kde splnění určitých podmínek zaručuje
-splnění jiné podmínky. 
+splnění jiné podmínky.
 
 V _množinové reprezentaci_ odpovídají modely množinám literálů, které obsahují pro každou výrokovou proměnnou $p$ právě jeden z literálů $p, not p$:
 - _(Částečné) ohodnocení_ $cal(V)$ je libovolná množina literálů, která je _konzistentní_, tj. neobsahuje dvojici opačných literálů
@@ -182,7 +182,7 @@ _Instance_ výrazu $E$ při _substituci_ $sigma = {x_1 \/t_1, dots, x_n \/t_n}$ 
 
 Které substituce se nám hodí? Takové, po jejichž provedení se dané výrazy 'stanou stejnými', tj. _unifikovanými_.
 
-Mějme konečnou množinu výrazů $S = {E_1, dots, E_n}$. Substituce $sigma$ je _unifikace_ pro $S$, pokud $E_1 sigma = dots = E_n sigma$, neboli $S sigma$ obsahuje jediný výraz. Unifikace pro $S$ je _nejobecnější_, pokud pro každou unifikaci $tau$ pro $S$ existuje substituce $lambda$ t.ž. $tau = sigma lambda$. Těch může být více, liší se ale pouze přejmenováním proměnných. 
+Mějme konečnou množinu výrazů $S = {E_1, dots, E_n}$. Substituce $sigma$ je _unifikace_ pro $S$, pokud $E_1 sigma = dots = E_n sigma$, neboli $S sigma$ obsahuje jediný výraz. Unifikace pro $S$ je _nejobecnější_, pokud pro každou unifikaci $tau$ pro $S$ existuje substituce $lambda$ t.ž. $tau = sigma lambda$. Těch může být více, liší se ale pouze přejmenováním proměnných.
 
 Uvažme množinu výrazů $S = {P(f(x), y), P(f(a), w)}$. Nejobecnější unifikací pro $S "je" sigma = {x\/a, y\/w}$. Jinou unifikací je $tau = {x\/a, y\/c, w\/b}$, není ale nejobecnější, nelze z ní získat např. unifikaci $rho = {x\/a, y\/c, w\/c}$. Unifikaci $tau$ naopak lze získat z nejobecnější unifikace pomocí substituce $lambda = {w\/b}, tau = sigma lambda$.
 
@@ -288,7 +288,7 @@ Pokud máme prázdnou teorii, píšeme $models phi$, říkáme že $phi$ je prav
 
 Teorie je _kompletní_, je-li bezesporná a každá _sentence_ je v ní buď pravdivá, nebo lživá.
 
-Nemůžeme říci, že teorie je _kompletní_, pokud má jediný model. Máme-li totiž jeden model, získáme z něj nekonečně mnoho jiných izomorfních modelů, tj. lišících se jen pojmenováním prvků univerza. Uvažovat jediný model "až na izomorfismus" by ale nebylo dostatečné. 
+Nemůžeme říci, že teorie je _kompletní_, pokud má jediný model. Máme-li totiž jeden model, získáme z něj nekonečně mnoho jiných izomorfních modelů, tj. lišících se jen pojmenováním prvků univerza. Uvažovat jediný model "až na izomorfismus" by ale nebylo dostatečné.
 
 Struktury $cA, cB$ v témž jazyce jsou _elementárně ekvivalentní_, pokud v nich platí tytéž sentence. Píšeme $cA equiv cB$.
 
@@ -385,7 +385,7 @@ Teorie $T$ je _rekurzivně axiomatizovatelná_, pokud existuje algoritmus, kter�
 
 Zaměříme se na otázku, zda můžeme v dané teorii T "algoritmicky rozhodovat pravdu" (tj. platnost vstupní formule). Pokud ano, říkáme, že je teorie rozhodnutelná. To je ale poměrně silná vlastnost, definujeme proto také částečnou rozhodnutelnost, která znamená, že pokud formule platí, algoritmus nám to řekne, ale pokud neplatí, nikdy se nemusíme dočkat odpovědi.
 
-O teorii $T$ říkáme, že je 
+O teorii $T$ říkáme, že je
 - _Rozhodnutelná_, pokud existuje algoritmus, který pro každou vstupní formuli $phi$ doběhne a odpoví, zda $T models phi$
 - _Částečně rozhodnutelná_, pokud existuje algoritmus, který pro každou vstupní formuli:
   - pokud $T models phi$, doběhne a odpoví "ano"
