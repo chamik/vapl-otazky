@@ -26,6 +26,7 @@
 #let cl = $cal(l)$
 #let cln = $overline(cl)$
 #let Th = $"Th"$
+#let cV = $cal(V)$
 
 #outline(
   title: [Seznam otázek]
@@ -315,6 +316,12 @@ Mějme $phi(x_1, dots, x_n)$ a strukturu $cA$ v témž jazyce. _Množina definov
 
 Např. formule $not (exists y)E(x,y)$ definuje množinu izolovaných vrcholů v grafu.
 
+Občas se hodí mluvit o vlastnostech prvků relativně k jiným prvkům dané struktury. To nelze vyjádřit čistě syntakticky, ale můžeme za některé z volných proměnných dosadit prvky struktury jako _parametry_. Zápisem $phi(overline(x), overline(y))$ myslíme, že formule $phi$ má volné proměnné $x_1, dots, x_n, y_1, dots, y_k$ (pro nějaká $n, k$).
+
+Mějme formuli $phi(overline(x), overline(y))$, kde $|overline(x)|=n, |overline(y)|=k$, strukturu $cA$ v témž jazyce a k-tici prvků $overline(b) in A^k$. _Množina definovaná formulí $phi(overline(x), overline(y))$ s parametry $overline(b)$ ve struktuře $cA$_ značíme $phi^(cA,overline(b))(overline(x), overline(y))$ je: $ phi^(cA,overline(b))(overline(x), overline(y)) = {overline(a) in A^n | cA models phi[e(overline(x)\/overline(a), overline(y)\/overline(b))]} $
+
+Např. pro $phi(x, y) = E(x, y)$ je $phi^(cal(G), v)(x,y)$ množina všech sousedů $v$.
+
 == (P16) Extenze o definice
 
 Pojem _extenze_ je definován stejně jako ve výrokové logice.
@@ -423,20 +430,63 @@ Podobně pro 2-klauzule. Pokud mám $cl_1 or cl_2$, tak v $G_phi$ je $cln_1 impl
 
 == (L3) Horn-SAT, Algoritmus jednotkové propagace, jeho korektnost
 
-Viz (P8) co to je Horn-SAT. Algoritmus vypadá následovně:
+Viz (P8) co to je Horn-SAT. _Jednotková propagace:_ pokud náš výrok obsahuje jednotkovou klauzuli, víme, jak musí být ohodnocena výroková proměnná v této klauzuli -- tuto znalost můžeme propagovat, využít k zjednodušení výroku:
+- každá výroková proměnná obsahující pozitivní literál je splněna a můžeme ji z výroku odstranit
+- negativní literál nemůže být splněn, můžeme ho tedy odebrat ze všech klauzulí, které ho obsahují.
+
+Výsledkem je zjednodušený výrok označený $phi^cl$ pro jednotkovou klauzuli (literál) $cl$ co jsme odstranili. Všimněme si, že $phi^cl$ neobsahuje $cl$, ani $cln$ a zřejmě platí, že modely $phi$ jsou právě modely ${phi^cl, cl}$, neboli modely $phi^cl$ v původním jazyce $PP$, ve kterých platí $cl$.
+
+Nyní algoritmus:
 
 `IN`: $phi$ v Horn-SAT. `OUT`: Model, nebo informace, že neexistuje
 
 1. Pokud $phi$ obsahuje (jednotkové klauzule) $cl "i" cln$, pak není splnitelný
-2. Pokud $phi$ neobsahuje jednotkovou klauzuli, ohodnoť všechny zbývající proměnné 0 (konec)
+2. Pokud $phi$ neobsahuje jednotkovou klauzuli, ohodnoť všechny zbývající proměnné 0 (konec)\*
 3. Pokud $phi$ obsahuje jednotkovou klauzuli $cl$, ohodnoť $cl = 1$, proveď _jednotkovou propagaci_, nahraď $phi$ výrokem $phi^cl$
 4. Opakuj
 
-// todo: proof
+\*To funguje díky "hornovskosti" výroku. Pokud ve výroku není jednotkový literál, pak každá klauzule obsahuje alespoň dva literály a nejvýše jeden z nich může být pozitivní. Když tedy nastavíme všechny zbývající literály na 0, určitě tím splníme všechny klauzule.
+
+== (L4) Vlastnosti extenze teorií
+
+== (L5) Vztah definovatelných množin a automorfismů
+
+_Automorfismus_ je izomorfismus struktury $cA$ na $cA$. Viz (P15) pro definovatelné množiny.
+
+Je-li $D subs A^n$ _definovatelná_ ve struktuře $cA$, potom pro každý automorfismus $h in "Aut"(cA)$ platí $h[D] = D$ (kde $h[D]$ značí ${h(overline(a) | overline(a) in D)}$). Je-li $D$ definovatelná s parametry $b$, platí totéž pro automorfismy identické na $overline(b)$ _($thin$fixující $overline(b)$)_, tj. takové, že $h(overline(b)) = overline(b)$.
+
+_Důkaz:_ Jen verze s parametry. Nechť $D = phi^(cA, overline(b))(overline(x), overline(y))$. Potom pro každé $overline(a) in A^n$ platí ekvivalence:
+
+$ overline(a) in D &arrow.l.r.double&& cA models phi[e(overline(x)\/overline(a), overline(y)\/overline(b))]\
+&arrow.l.r.double&& cA models phi[(e compose h)(overline(x)\/overline(a), overline(y)\/overline(b))]\
+&arrow.l.r.double&& cA models phi[e(overline(x)\/h(overline(a)), overline(y)\/h(overline(b)))]\
+&arrow.l.r.double&& cA models phi[e(overline(x)\/h(overline(a)), overline(y)\/overline(b))]\
+&arrow.l.r.double&& h(overline(a)) in D
+$
 
 == (L7) Věta o kompaktnosti a její aplikace <L7>
 
-Neaxiomatizovatelnost konečných grafů, viz claude.
+_Věta o kompaktnosti:_ Teorie má model, právě tehdy, když každá její konečná část má model.
+
+_Důkaz_: Model teorie je modelem každé její části. Pokud $T$ nemá model, je sporná, tedy $T tack fal$. Vezměme nějaký její _konečný_ tablo důkaz $fal "z" T$. K jeho konstrukci stačí konečně mnoho $alpha in T$, ty tvoří konečnou podteorii $T'$, která nemá model. $qed$
+
+Důsledek: Teorie konečných grafů není axiomatizovatelná: Mějme $T$ a její modely, všechny konečné grafy.
+1. Vytvoříme $T^*$. Přidáme do ní _nekonečně mnoho_ nových axiomů říkajících, že:\
+ $exists x_1$ (existuje alespoň jeden prvek)\
+ $exists x_1, x_2: x_1 neq x_2$ (existují alespoň dva prvky)\
+ $dots$
+2. Každá konečná podmnožina $T^*$ má model. Řekněme, že největší axiom vybrán v něm je $exists x_1, dots, x_n$. Konečný graf s $n$ vrcholy toto určitě splňuje. 
+3. Podle věty o kompaktnosti má celá rozšířená teorie $T^*$ model. Ale tento model musí splňovat všechny přidané axiomy, tedy obsahovat nekonečně mnoho prvků - je to nekonečný graf. Zároveň ale musí být modelem původní teorie T, tedy konečným grafem. Spor!
+
+== (L8) Korektnost rezoluce ve výrokové logice
+
+Je-li CNF formule S rezolucí zamítnutelná, je S nesplnitelná.
+
+_Důkaz_: Nechť $S scripts(tack)_R square$ a důkaz $C_0, C_1, dots, C_n = square$. Pro spor nechť je $S$ splnitelná, tedy $cV models S$ pro nějaké ohodnocení $cV$. Indukcí podle $i$ dokážeme $cV models C_i$.
+
+- pro $i = 0$ platí, neb $C_0 in S$
+- pro $i > 0$ nastanou dva případy:
+  - $C_i in S$
 
 == (L15) Gödelovy věty neúplnosti
 
