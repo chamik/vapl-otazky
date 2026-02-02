@@ -31,7 +31,7 @@ Je-li _sentence_ $phi$ pravdivá v teorii $T$, potom je $phi$ tablo dokazatelné
 Obdoba z výrokové logiky. Důkaz sporem, akorát model není ohodnocení, ale struktura. Kdyby tablo nebylo sporné, byla by v něm dokončená nesporná větev odpovídající kanonickému modelu, ve kterém $phi$ neplatí.
 
 Kanonický model (struktura) pro danou (dokončenou nespornou) větev:
-- pro univerzum vezmeme všechny konstantní a funkční symboly a rekurzivně je na sebe aplikujeme; univerzum obsahuje textové řetězce, pokud jazyk obsahuje alespoň jeden funkční symbol, bude univerzum nekonečné
+- pro univerzum vezmeme všechny konstantní (i pomocné) a funkční symboly a rekurzivně je na sebe aplikujeme; univerzum obsahuje textové řetězce, univerzum bude vždy nekonečné, protože pomocných symbolů je nekonečně mnoho
 - relace $R(...)$ platí právě když na větvi je položka T$R(...)$
 - funkce vrací prvek z univerza vzniklý spojením funkčního symbolu a symbolů parametrů; příklad v Pythonu pro binární funkci $g$:
 ```py
@@ -86,6 +86,7 @@ Důkaz odpovídá algoritmu používanému před rezolucí. Uděláme generáln�
 Generální uzávěr: Přidání $(forall x)$ pro všechny volné proměnné $x$.
 
 Prenexní normální forma (PNF): Formule s kvantifikátory pouze na začátku. Kvantifikátory jsou _kvantifikátorový prefix_ a zbytek je _otevřené jádro_.
+// TODO častý chyby při prenexování
 
 Skolemova varianta: Nahrazení každého $(exists x)$ za $f_x (...)$, kde argumenty jsou všechny předchozí $(forall amogus)$.
 
@@ -100,6 +101,12 @@ Tedy pokud je teorie splnitelná (má model), má i Herbrandův model, pokud spl
 Důkaz tablem. Herbrandův model tvoříme podobně jako kanonický model, nejprve je třeba $T$ uzemnit na $T_"ground"$ pomocí základních instancí.
 
 // TODO nějaký dva crazy důsledky
+
+== (T10) Löwenheim-Skolemova věta včetně varianty s rovností, jejich důsledky
+
+Pro spočetný jazyk bez rovnosti $L$: každá bezesporná teorie v jazyce $L$ má spočetně nekonečný model.
+
+Důkaz systematickým tablem s F$fal$ v kořeni. Tablo bude dokončené#footnote[Bude dokončené? Skripta říkají "nějaké dokončené tablo", ale pokud bude teorie nekonečná, bude nutně takové existovat?] a univerzum výsledné struktury bude nekonečné, protože obsahuje nekonečno pomocných symbolů (viz T5).
 
 == (T12) Neaxiomatizovatelnost konečných modelů
 
@@ -116,7 +123,6 @@ Mějme třídu struktur $K subs M_L$ a uvážíme její doplněk $overline(K) = 
 
 Pokud je teorie T rekurzivně axiomatizovaná a má rekurzivně spočetnou kompletaci, potom je T rozhodnutelná.
 
-_Důkaz:_ Pro danou sentenci $phi$ buď $T tack phi$, nebo existuje protipříklad $cA modelsnot phi$, resp. kompletní jednoduchá extenze $T_i$ teorie $T$ takové, že $T_i tack.not phi$. Z kompletnosti však plyne, že $T_i tack not phi$. Náš algoritmus bude paralelně konstruovat tablo důkaz $phi$ z $T$ a postupně tablo důkazy $not phi$ ze všech kompletních jednoduchých extenzí $T_1, T_2, dots$ teorie $T$. Víme, že alespoň jedno z paralelně konstruovaných tabel je sporné (a můžeme předpokládat, že konečné, pokud neprodlužujeme sporné větve), tedy algoritmus jej po konečně mnoha krocích zkonstruuje. 
+_Důkaz:_ Pro danou sentenci $phi$ buď $T tack phi$, nebo existuje protipříklad $cA modelsnot phi$, resp. kompletní jednoduchá extenze $T_i$ teorie $T$ takové, že $T_i tack.not phi$. Z kompletnosti však plyne, že $T_i tack not phi$. Náš algoritmus bude paralelně konstruovat tablo důkaz $phi$ z $T$ a postupně tablo důkazy $not phi$ ze všech kompletních jednoduchých extenzí $T_1, T_2, dots$ teorie $T$. Víme, že alespoň jedno z paralelně konstruovaných tabel je sporné (a můžeme předpokládat, že konečné, pokud neprodlužujeme sporné větve), tedy algoritmus jej po konečně mnoha krocích zkonstruuje.
 
 To je vlastně podobné jako (L13), jen tady díky existenci algoritmu odpovídajícího na $(i, j)$ můžeme dělat dotazy i na extenze.
-
