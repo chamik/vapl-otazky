@@ -100,3 +100,23 @@ Tedy pokud je teorie splnitelná (má model), má i Herbrandův model, pokud spl
 Důkaz tablem. Herbrandův model tvoříme podobně jako kanonický model, nejprve je třeba $T$ uzemnit na $T_"ground"$ pomocí základních instancí.
 
 // TODO nějaký dva crazy důsledky
+
+== (T12) Neaxiomatizovatelnost konečných modelů
+
+idk asi (L7)
+
+== (T13) Věta o konečné axiomatizovatelnosti
+
+Mějme třídu struktur $K subs M_L$ a uvážíme její doplněk $overline(K) = M_L \\ K$. Potom $K$ je konečně axiomatizovatelné, právě tehdy, když $K$ i $overline(K)$ jsou axiomatizovatelné.
+
+== (T14) Rekurzivně axiomatizovaná teorie s rekurzivně spočetnou kompletací je rozhodnutelná
+
+Řekneme, že teorie $T$ má _rekurzivně spočetnou kompletaci_, pokud má až na ekvivalenci jen spočetně mnoho kompletních jednoduchých extenzí a (nějaká) množina až na ekvivalenci všech kompletních jednoduchých extenzí teorie $T$ je rekurzivně spočetná, tj. existuje algoritmus, který pro danou vstupní dvojici přirozených
+čísel $(i, j)$ vypíše na výstup $i$-tý axiom $j$-té extenze (v nějakém pevně daném uspořádání, na což potřebujeme, aby byl jazyk spočetný), nebo odpoví, že takový axiom už neexistuje (je-li extenzí méně než $j$, nebo má-li $j$-tá extenze méně než $i$ axiomů).
+
+Pokud je teorie T rekurzivně axiomatizovaná a má rekurzivně spočetnou kompletaci, potom je T rozhodnutelná.
+
+_Důkaz:_ Pro danou sentenci $phi$ buď $T tack phi$, nebo existuje protipříklad $cA modelsnot phi$, resp. kompletní jednoduchá extenze $T_i$ teorie $T$ takové, že $T_i tack.not phi$. Z kompletnosti však plyne, že $T_i tack not phi$. Náš algoritmus bude paralelně konstruovat tablo důkaz $phi$ z $T$ a postupně tablo důkazy $not phi$ ze všech kompletních jednoduchých extenzí $T_1, T_2, dots$ teorie $T$. Víme, že alespoň jedno z paralelně konstruovaných tabel je sporné (a můžeme předpokládat, že konečné, pokud neprodlužujeme sporné větve), tedy algoritmus jej po konečně mnoha krocích zkonstruuje. 
+
+To je vlastně podobné jako (L13), jen tady díky existenci algoritmu odpovídajícího na $(i, j)$ můžeme dělat dotazy i na extenze.
+

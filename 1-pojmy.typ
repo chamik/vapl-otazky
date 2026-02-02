@@ -102,6 +102,25 @@ _Tablo důkaz_ výroku $phi$ z teorie $T$ je _sporné_ tablo z teorie $T$ s polo
   - je tvaru T$p$ resp. F$p$ pro nějakou výrokovou proměnnou $p in PP$, nebo
   - vyskytuje se na V jako kořen atomického tabla??
 
+== (P7) Kongruence struktury, faktorstruktura, axiomy rovnosti
+
+Mějme ekvivalenci $~$ na množině $A$, funkci $f: A^n arrow A$ a relaci $R subs A^n$. Říkáme, že $~$ je:
+- _kongruencí_ pro funkci $f$, pokud pro všechna $a_i, b_i in A$ takové, že $a_i ~ b_i$ ($1 <= i <= n$), platí $f(a_1, dots, a_n) ~ f(b_1, dots, b_n)$
+- _kongruencí_ pro relaci $R$, pokud pro všechna $a_i, b_i in A$ takové, že $a_i ~ b_i$ ($1 <= i <= n$), platí $(a_1, dots, a_n) in R$ právě tehdy, když $(b_1, dots, n_n) in R$
+
+_Kongruence struktury_ $cA$ je ekvivalence $~$ na množině $A$, která je kongruencí pro všechny funkce a relace $cA$.
+
+Mějme strukturu $cA$ a její kongruenci. _Faktorstruktura_ (_podílová struktura_) $cA$ podle $~$ je struktura $cA scripts(\/)_(~)$ v témž jazyce, jejíž univerzum $cA scripts(\/)_(~)$ je množina všech rozkladových tříd $A$ podle $~$ a jejíž funkce a relace jsou definované pomocí reprezentantů, tj:
+- $f^(cA scripts(\/)_(~))([a_1]_~, dots, [a_n]_~) = [f^cA (a_1, dots, a_n)]_~$ pro každý n-ární funkční symbol $f$
+- $R^(cA scripts(\/)_(~))([a_1]_~, dots, [a_n]_~)$ právě tehdy, když $R^cA (a_1, dots, a_n)$ pro každý n-ární relační symbol $R$
+
+_Axiomy rovnosti_ pro jazyk $L$ s rovností jsou následující:\
+(i) $x = x$\
+(ii) $x_1 = y_1 and dots and x_n = y_n impl f(x_1, dots, x_n) = f(y_1, dots, y_n)$ pro každý n-ární funkční symbol $f$\
+(iii) $x_1 = y_1 and dots and x_n = y_n impl (R(x_1, dots, x_n) impl R(y_1, dots, y_n))$ pro každý n-ární relační symbol $R$
+
+Z axiomů (i) a (iii) tedy plyne, že relace $scripts(=)^cA$ je ekvivalence na $A$. Axiomy (ii) a (iii) vyjadřují, že $scripts(=)^cA$ je kongruencí $cA$.
+
 == (P8) CNF a DNF, Hornův tvar. Množinová reprezentace CNF formule, splňující ohodnocení
 
 _Literál_ $cl$ je buď prvovýrok $p$, nebo jeho negace $not p$. Pro prvovýrok $p$ označme $p^0 = not p$ a $p^1 = p$. Nápis $cln$ označuje opačný literál k $cl$.

@@ -3,6 +3,7 @@
 #let MP = $M_PP$
 #let neq = $eq.not$
 #let models = $tack.r.double$
+#let modelsnot = $tack.r.double.not$
 #let subs = $subset.eq$
 #let tu = $top$
 #let fal = $bot$
