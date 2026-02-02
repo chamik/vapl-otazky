@@ -108,6 +108,18 @@ Pro spočetný jazyk bez rovnosti $L$: každá bezesporná teorie v jazyce $L$ m
 
 Důkaz systematickým tablem s F$fal$ v kořeni. Tablo bude dokončené#footnote[Bude dokončené? Skripta říkají "nějaké dokončené tablo", ale pokud bude teorie nekonečná, bude nutně takové existovat?] a univerzum výsledné struktury bude nekonečné, protože obsahuje nekonečno pomocných symbolů (viz T5).
 
+== (T11) Vztah izomorfismu a elementární ekvivalence
+
+Pro struktury $cA$ a $cB$: $cA tilde.eq cB => cA equiv cB$.
+
+$cA tilde.eq cB <=>$ "$cA$ je izomorfní s $cB$" $<=>$ existuje bijekce $h: A -> B$ splňující
+- $h(f^cA (a)) = f^cB (h(a))$
+- $R^cA (a) <=> R^cB (h(a))$
+
+$cA equiv cB <=>$ "$cA$ je elementárně ekvivalentní s $cB$" $<=>$ v $cA$ platí stejné sentence jako v $cB$.
+
+// TODO něco víc
+
 == (T12) Neaxiomatizovatelnost konečných modelů
 
 idk asi (L7)
