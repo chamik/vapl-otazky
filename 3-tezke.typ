@@ -91,7 +91,7 @@ Prenexní normální forma (PNF): Formule s kvantifikátory pouze na začátku. 
 Skolemova varianta: Nahrazení každého $(exists x)$ za $f_x (...)$, kde argumenty jsou všechny předchozí $(forall amogus)$.
 
 Převod do PNF:
-- $not(forall x) phi <=> (exists x) phi$
+- $not(forall x) phi <=> (exists x) not phi$
 - $(forall x) phi -> psi <=> (exists x)(phi -> psi)$
 - $psi -> (forall x) phi <=> arrow.r.double (forall x)(psi -> phi)$
 - ostatní jsou triviální
