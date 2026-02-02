@@ -161,7 +161,7 @@ Rezoluce v predikátové logice.
 _Signatura_ je dvojice $sl cR, cF sr$, kde $cR, cF$ jsou disjunktní množiny symbolů (relační a funkční zahrnující konstantní) spolu s danými aritami (danými funkcí $text("ar"): cR union cF arrow NN$) a neobsahující symbol $=$, který je rezervovaný pro _rovnost_. Signatura se často zapisuje jen výčtem symbolů, je-li arita a to, zdali jsou relační/funkční, zřejmé z kontextu.
 
 _Struktura_ v signatuře $sig$ je trojice $cA = sl A, cR^cA, cF^cA sr$, kde:
-- $A$ je neprázdná množina, _doména_, _universum_
+- $A$ je neprázdná množina, _doména_, _univerzum_
 - $cR^cA = {R^cA | R in cR}$ kde $R^cA subs A^(ar(R))$ je je _interpretace_ relačního symbolu $R$
 - $cF^cA = {f^cA | f in cF}$ kde $f^cA: A^ar(f) arrow A$ je interpretace funkčního symbolu $f$ (speciální pro konstantní symbol $c in cF$ máme $c^cA in A$)
 
@@ -174,7 +174,7 @@ Do _jazyka_ patří následující:
 - symboly pro logické spojky a závorky
 - informace, jestli je to jazyk _s rovností_ či bez
 
-Do jazyka *nepatří* universum.
+Do jazyka *nepatří* univerzum.
 
 == (P11) Atomické formule, formule, sentence, otevřené formule
 
@@ -345,7 +345,7 @@ Např. tělesa jsou konečně, ale ne otevřeně axiomatizovatelná. Dále pak t
 
 == (P19) Teorie konečné struktury v konečném jazyce s rovností je rozhodnutelná
 
-Povolili jsme, aby teorie $T$, ve které dokazujeme, byla nekonečná. Pokud chceme ověřit, že je daný objekt (tablo, rezoluční strom, posloupnost formulí) korektním důkazem, potřebujeme nějaký algoritmický přístup ke všem axiomům $T$. Jednou z možností by bylo požadovat _enumerátor_ $T$ , tj. algoritmus, který vypisuje na výstup axiomy z $T$, a každý axiom někdy vypíše ($T$ musí být spočetná, resp. stačí že universum je spočetné). Potom by bylo snadné potvrdit, že je daný důkaz korektní. Pokud bychom ale dostali důkaz, který použil chybný axiom, který v T není, nikdy bychom se to nedozvěděli: nekonečně dlouho bychom čekali, zda jej enumerátor přeci jen nevypíše. Požadujeme proto silnější vlastnost, která umožňuje rozpoznat i chybné důkazy.
+Povolili jsme, aby teorie $T$, ve které dokazujeme, byla nekonečná. Pokud chceme ověřit, že je daný objekt (tablo, rezoluční strom, posloupnost formulí) korektním důkazem, potřebujeme nějaký algoritmický přístup ke všem axiomům $T$. Jednou z možností by bylo požadovat _enumerátor_ $T$ , tj. algoritmus, který vypisuje na výstup axiomy z $T$, a každý axiom někdy vypíše ($T$ musí být spočetná, resp. stačí že univerzum je spočetné). Potom by bylo snadné potvrdit, že je daný důkaz korektní. Pokud bychom ale dostali důkaz, který použil chybný axiom, který v T není, nikdy bychom se to nedozvěděli: nekonečně dlouho bychom čekali, zda jej enumerátor přeci jen nevypíše. Požadujeme proto silnější vlastnost, která umožňuje rozpoznat i chybné důkazy.
 
 Teorie $T$ je _rekurzivně axiomatizovatelná_, pokud existuje algoritmus, který pro každou vstupní formuli $phi$ doběhne a odpoví, zda $phi in T$.
 
