@@ -76,3 +76,15 @@ Lifting lemma: Pro klauzule $C_1$ a $C_2$ s disjunktními množinami proměnnýc
 Základní instance: Pro otevřenou formuli $phi$ proměnných $x_1, ..., x_n$: instance $phi(x_1 slash t_1, ..., x_n slash t_n)$ je _základní instance_, jsou-li termy $t_1, ..., t_n$ konstantní. ${x_1 slash t_1, ..., x_n slash t_n}$ nazýváme _základní substituce_.
 
 Základní instance umožňuje převést výraz z predikátové logiky do výrokové nahrazením atomických sentencí za atomické výroky. Lifting lemma to aplikuje na klauzule a jejich rezolventy.#footnote[Moc tomu nerozumim no.]
+
+== (T8) Skolemova věta
+
+Každá teorie má otevřenou konzervativní extenzi.
+
+Důkaz odpovídá algoritmu používanému před rezolucí. Uděláme generální uzávěr, převedeme do prenexní normální formy, změníme na Skolemovu variantu, odstraníme zbývající kvantifikátory.
+
+Generální uzávěr: Přidání $(forall x)$ pro všechny volné proměnné $x$.
+
+Prenexní normální forma (PNF): Formule s kvantifikátory pouze na začátku. Kvantifikátory jsou _kvantifikátorový prefix_ a zbytek je _otevřené jádro_.
+
+Skolemova varianta: Nahrazení každého $(exists x)$ za $f_x (...)$, kde argumenty jsou všechny předchozí $(forall amogus)$.

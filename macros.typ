@@ -24,3 +24,4 @@
 #let cln = $overline(cl)$
 #let Th = $"Th"$
 #let cV = $cal(V)$
+#let amogus = text(font: "Noto Serif Sinhala", size: 0.85em, [$\u{0d9e}$])
