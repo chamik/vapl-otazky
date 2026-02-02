@@ -88,3 +88,15 @@ Generální uzávěr: Přidání $(forall x)$ pro všechny volné proměnné $x$
 Prenexní normální forma (PNF): Formule s kvantifikátory pouze na začátku. Kvantifikátory jsou _kvantifikátorový prefix_ a zbytek je _otevřené jádro_.
 
 Skolemova varianta: Nahrazení každého $(exists x)$ za $f_x (...)$, kde argumenty jsou všechny předchozí $(forall amogus)$.
+
+== (T9) Herbrandova věta
+
+Pro teorii $T$ v jazyce $L$ bez rovnosti s alespoň jedním konstantním symbolem: buď $T$ má _Herbrandův model_, nebo existuje konečně mnoho základních instancí (viz T7) axiomů $T$, jejichž konjunkce je nesplnitelná.
+
+Herbrandův model: Kanonický model (viz T4), ale nijak nedefinujeme relace.
+
+Tedy pokud je teorie splnitelná (má model), má i Herbrandův model, pokud splnitelná není, dosadíme do axiomů konstanty a vznikne spor.
+
+Důkaz tablem. Herbrandův model tvoříme podobně jako kanonický model, nejprve je třeba $T$ uzemnit na $T_"ground"$ pomocí základních instancí.
+
+// TODO nějaký dva crazy důsledky
