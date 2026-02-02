@@ -119,7 +119,25 @@ _Důkaz:_ Nechť $T$ je otevřená axiomatizace $T$. Mějme model $cA models T'$
 
 == (L13) Rekurzivně axiomatizovaná teorie je částečně rozhodnutelná, kompletní je rozhodnutelná
 
+Nechť $T$ je rekurzivně axiomatizovaná, potom:
+- $T$ je částečně rozhodnutelná
+- je-li $T$ navíc kompletní, potom je rozhodnutelná
+
+Pro definice viz (P19)
+
+_Důkaz:_ Algoritmem ukazujícím částečnou rozhodnutelnost je konstrukce systematického tabla z teorie $T$ pro položku F$phi$ (zde nám stačí enumerátor axiomů $T$, nebo postupně generujeme všechny sentence např. v lexikografickém pořadí a pro každou testujeme, zda je axiomem). Pokud $phi$ v $T$ platí, konstrukce skončí v konečně mnoha krocích a snadno ověříme, že je tablo sporné. Jinak ale skončit nemusí. 
+
+Je-li $T$ kompletní, víme, že platí právě jedna z následujících možností: buď $T models phi$, nebo $T models not phi$. Budeme tedy paralelně konstruovat tablo pro T$phi$ a pro F$phi$; jedna z konstrukcí po konečně mnoha krocích skončí.
+
 == (L14) Teorie konečné struktury v končném jazyce s rovností je rozhodnutelná
+
+Je-li $cA$ konečná struktura v konečném jazyce s rovností, potom je teorie $Th(cA)$ rekurzivně axiomatizovaná.
+
+Z toho plyne, že $Th(cA)$ je rozhodnutelná, neboť platnost sentence $phi$ můžeme v $cA$ snadno ověřit.
+
+_Důkaz:_ Očíslujeme prvky domény $A = {a_1, dots, a_n}$. Teorii $Th(cA)$ lze axiomatizovat jedinou sentencí, která je ve tvaru "existuje právě $n$ prvků $a_1, dots, a_n$ splňujících právě ty _základní vztahy_ o funkčních hodnotách a relacích, které platí ve struktuře $cA$".
+
+Například, pokud $f^cA (a_4, a_2) = a_17$, přidáme do konjunkce atomickou formuli $f(x_a_4 , x_a_2 ) = x_a_17$ (kde $x_a_i$ jsou proměnné odpovídající jednotlivým prvkům). A pokud $(a_3, a_3, a_1) in.not R^cA$, přidáme $not R(x_a_3 , x_a_3 , x_a_1)$.
 
 == (L15) Gödelovy věty neúplnosti
 

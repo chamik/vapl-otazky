@@ -63,7 +63,7 @@ Systematické tablo: Vstup: uspořádaná teorie $T = {alpha_1, alpha_2, ...}$, 
 
 == (T6) Věta o úplnosti rezoluce ve výrokové logice
 
-Je-li formule $S$ (v CNF množinové reprezentaci) nesplnitelná, je rezolucí zamítnutelná. $S tack_R square$.
+Je-li formule $S$ (v CNF množinové reprezentaci) nesplnitelná, je rezolucí zamítnutelná. $S scripts(tack)_R square$.
 
 Důkaz indukcí podle počtu proměnných od $|Var(S)|$ směrem k nule. Podle věty o kompaktnosti, BÚNO $S$ je konečná.
 
