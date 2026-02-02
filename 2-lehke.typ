@@ -69,7 +69,7 @@ Důsledek: Teorie konečných grafů není axiomatizovatelná: Mějme $T$ a jej�
  $exists x_1$ (existuje alespoň jeden prvek)\
  $exists x_1, x_2: x_1 neq x_2$ (existují alespoň dva prvky)\
  $dots$
-2. Každá konečná podmnožina $T^*$ má model. Řekněme, že největší axiom vybrán v něm je $exists x_1, dots, x_n$. Konečný graf s $n$ vrcholy toto určitě splňuje. 
+2. Každá konečná podmnožina $T^*$ má model. Řekněme, že největší axiom vybrán v něm je $exists x_1, dots, x_n$. Konečný graf s $n$ vrcholy toto určitě splňuje.
 3. Podle věty o kompaktnosti má celá rozšířená teorie $T^*$ model. Ale tento model musí splňovat všechny přidané axiomy, tedy obsahovat nekonečně mnoho prvků - je to nekonečný graf. Zároveň ale musí být modelem původní teorie T, tedy konečným grafem. Spor!
 
 == (L8) Korektnost rezoluce ve výrokové logice
@@ -87,7 +87,7 @@ _Důkaz_: Nechť $S scripts(tack)_R square$ a důkaz $C_0, C_1, dots, C_n = squa
 
 Mějme $C_1, C_2$ a jejich rezolventu $C$. Platí-li ve struktuře $cA$ klauzule $C_1, C_2$, platí v ní i $C$.
 
-_Důkaz:_ Z rezolučního pravidla víme $C = C'_1 sigma union C'_2 sigma$, kde $sigma$ je nejobecnější unifikace množiny výrazů $S = {A_1, dots, A_n, B_1, dots, B_n}$, neboli $S sigma = {A_1 sigma}$. Protože $C_1, C_2$ jsou otevřené formule platné v $cA$, platí v $cA$ i jejich instance po substituci $sigma$, tj. $cA models C_1 sigma$ a $cA models C_2 sigma$. Víme také $C_1 sigma = C'_1 sigma union {A_1 sigma}$ a podobně $C_2 sigma = 2'_1 sigma union {not A_1 sigma}$. // wtf?
+_Důkaz:_ Z rezolučního pravidla víme $C = C'_1 sigma union C'_2 sigma$, kde $sigma$ je nejobecnější unifikace množiny výrazů $S = {A_1, dots, A_n, B_1, dots, B_n}$, neboli $S sigma = {A_1 sigma}$. Protože $C_1, C_2$ jsou otevřené formule platné v $cA$, platí v $cA$ i jejich instance po substituci $sigma$, tj. $cA models C_1 sigma$ a $cA models C_2 sigma$. Víme také $C_1 sigma = C'_1 sigma union {A_1 sigma}$ a podobně $C_2 sigma = C'_2 sigma union {not A_1 sigma}$. // wtf?
 
 Chceme ukázat $cA models C[e]$ pro libovolné ohodnocení $e$. Pokud $cA models A_1 sigma[e]$, potom $cA tack.r.double.not not A_1 sigma[e]$ a musí být $cA models C'_2 sigma[e]$. Tedy i $cA models C[e]$. V opačném případě $cA tack.r.double.not A_1 sigma[e] dots$ pak opět $cA models C[e]$.
 
@@ -125,7 +125,7 @@ Nechť $T$ je rekurzivně axiomatizovaná, potom:
 
 Pro definice viz (P19)
 
-_Důkaz:_ Algoritmem ukazujícím částečnou rozhodnutelnost je konstrukce systematického tabla z teorie $T$ pro položku F$phi$ (zde nám stačí enumerátor axiomů $T$, nebo postupně generujeme všechny sentence např. v lexikografickém pořadí a pro každou testujeme, zda je axiomem). Pokud $phi$ v $T$ platí, konstrukce skončí v konečně mnoha krocích a snadno ověříme, že je tablo sporné. Jinak ale skončit nemusí. 
+_Důkaz:_ Algoritmem ukazujícím částečnou rozhodnutelnost je konstrukce systematického tabla z teorie $T$ pro položku F$phi$ (zde nám stačí enumerátor axiomů $T$, nebo postupně generujeme všechny sentence např. v lexikografickém pořadí a pro každou testujeme, zda je axiomem). Pokud $phi$ v $T$ platí, konstrukce skončí v konečně mnoha krocích a snadno ověříme, že je tablo sporné. Jinak ale skončit nemusí.
 
 Je-li $T$ kompletní, víme, že platí právě jedna z následujících možností: buď $T models phi$, nebo $T models not phi$. Budeme tedy paralelně konstruovat tablo pro T$phi$ a pro F$phi$; jedna z konstrukcí po konečně mnoha krocích skončí.
 

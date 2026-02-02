@@ -38,9 +38,10 @@ Kanonický model (struktura) pro danou (dokončenou nespornou) větev:
 def g(a: str, b: str) -> str:
     return f"g({a}, {b})"
 
-g("c0", "c1")  # -> "g(c0, c1)"
-# Jak "c0", tak "c1" i "g(c0, c1)" jsou prvky univerza.
-# Stejně tak třeba "g(g(c1, c1), c0)" bude.
+g("d", "c0")  # -> "g(d, c0)"
+# Jak "d", tak i "c0" a "g(d, c0)" jsou prvky univerza.
+# Stejně tak třeba "g(g(c0, c0), d)" bude.
+# d je příklad symbolu z původního jazyka L, c0 je pomocná konstanta z rozšířeného L_C, v univerzu bude obojí
 ```
 
 == (T5) Věta o konečnosti sporu, důsledky o konečnosti a systematičnosti důkazů
@@ -57,9 +58,9 @@ Systematické tablo: Vstup: uspořádaná teorie $T = {alpha_1, alpha_2, ...}$, 
 - $P =$  nejvyšší nejlevější neredukovaná položka na bezesporné větvi
 - Pokud jsme našli $P$: redukujeme $P$ přidáním atomického tabla na každou bezespornou větev pod~$P$
 - Pokud ještě zbývá axiom $alpha_i$ z $T$: na každou bezespornou větev připojíme T$alpha_i$
-- Pokud jsou všechny větve sporné#footnote[Tahle podmínka možná není správně, Systematičnost důkazu sice tvrdí, že tablo je konečné, ale skripta neříkají, kdy se má algoritmus zastavit. Navíc pokud je teorie nekonečná a vstup není sporný, algoritmus se nezastaví nikdy, jak naznačuje podmínka v Konečnosti sporu.]: skončili jsme, máme systematický tablo důkaz
+- Pokud jsou všechny větve sporné: skončili jsme, máme systematický tablo důkaz
 // viz Rozhodnutelnost, tam je podobná věc "buď vrátí ano, nebo nedoběhne"
-- Opakujeme
+- Opakujeme#footnote[Pokud bude teorie nekonečná a nikdy nenastane spor, budeme cyklit donekonečna. Není to v rozporu s žádnou s předem uvedených vět.]
 
 == (T6) Věta o úplnosti rezoluce ve výrokové logice
 
@@ -86,9 +87,17 @@ Důkaz odpovídá algoritmu používanému před rezolucí. Uděláme generáln�
 Generální uzávěr: Přidání $(forall x)$ pro všechny volné proměnné $x$.
 
 Prenexní normální forma (PNF): Formule s kvantifikátory pouze na začátku. Kvantifikátory jsou _kvantifikátorový prefix_ a zbytek je _otevřené jádro_.
-// TODO častý chyby při prenexování
 
 Skolemova varianta: Nahrazení každého $(exists x)$ za $f_x (...)$, kde argumenty jsou všechny předchozí $(forall amogus)$.
+
+Převod do PNF:
+- $not(forall x) phi <=> (exists x) phi$
+- $(forall x) phi -> psi <=> (exists x)(phi -> psi)$
+- $psi -> (forall x) phi <=> arrow.r.double (forall x)(psi -> phi)$
+- ostatní jsou triviální
+- $x$ nesmí být volná v $psi$, jinak bychom ji navázali $=>$ musíme vázané proměnné přejmenovat na něco unikátního, $(forall x) phi(x) <=> (forall amogus) phi(amogus)$
+- pro opačný kvantifikátor $(forall#h(-0.13em)slash exists)$ to funguje stejně
+
 
 == (T9) Herbrandova věta
 
