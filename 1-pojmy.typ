@@ -4,16 +4,18 @@
 
 == (P1) Model ve výrokové logice, pravdivostní funkce výroku
 
+Pravdivostní funkce $f_(phi, PP): {0,1}^(|PP|) arrow {0, 1}$ je definována induktivně:
+- Je-li $phi$ $i$-tý prvovýrok z $PP$, pak $f_(phi, PP)(x_0, dots, x_(n-1)) = x_i$
+- Je-li $phi = not phi'$, pak $f_(phi, PP)(x_0, dots, x_(n-1)) = f_not (f_(phi, PP)(x_0, dots, x_(n-1)))$
+- Je-li $phi = (phi' square thin phi'')$, pak $f_(phi, PP)(x_0, dots, x_(n-1)) = f_square (f_(phi', PP)(x_0, dots, x_(n-1)), f_(phi'', PP)(x_0, dots, x_(n-1)))$
+
+$square in {or, and, impl, eqviv}$ a mají pravdivostní funkce podle tabulek.
+
 Model jazyka je libovolné ohodnocení $v: PP arrow {0, 1}$. Pro $PP = {p, q}$ např. $v = {(p, 0), (q, 1)}$.
 
 Všechny modely jazyka $PP$ jsou $MP = {v | v: PP arrow {0, 1}} = {0,1}^PP$ (množina funkcí, resp. množina množin dvojic).
 
 Pro jednoduchost píšeme $v = (0, 1)$. Tedy ztotožňujeme ${0, 1}^PP$ a ${0, 1}^(|PP|)$. To můžeme udělat díky uspořádání jazyka $iota: {0, ..., n-1} arrow PP$.
-
-Pravdivostní funkce $f_(phi, PP): {0,1}^(|PP|) arrow {0, 1}$ je definována induktivně:
-- Je-li $phi$ $i$-tý prvovýrok z $PP$, pak $f_(phi, PP)(x_0, dots, x_(n-1)) = x_i$
-- Je-li $phi = not phi'$, pak $f_(phi, PP)(x_0, dots, x_(n-1)) = f_not (f_(phi, PP)(x_0, dots, x_(n-1)))$
-- Je-li $phi = (phi' square thin phi'')$, pak $f_(phi, PP)(x_0, dots, x_(n-1)) = f_square (f_(phi', PP)(x_0, dots, x_(n-1)), f_(phi'', PP)(x_0, dots, x_(n-1)))$\ $square in {or, and, impl, eqviv}$ a mají pravdivostní funkce podle tabulek.
 
 Mějme výrok $phi$ v $PP$ a model $v in MP$. Pokud platí $f_(phi, PP)(v) = 1$, říkáme, že výrok $phi$ _platí_ v modelu $v$, píšeme $v models p$. Množina všech modelů výroku je $MP (phi) = {v in MP | v models phi} = f_(phi, PP)^(-1)[1]$.
 
@@ -98,13 +100,13 @@ _Tablo důkaz_ výroku $phi$ z teorie $T$ je _sporné_ tablo z teorie $T$ s polo
   - je každá její položka na této větvi _redukovaná_ a zároveň obsahuje položku T$alpha$ pro každý axiom $alpha in T$
 - Položka $P$ je _redukovaná_ na větvi V procházející touto položkou, pokud
   - je tvaru T$p$ resp. F$p$ pro nějakou výrokovou proměnnou $p in PP$, nebo
-  - vyskytuje se na V jako kořen atomického tabla??
+  - vyskytuje se na V jako kořen atomického tabla
 
 == (P7) Kongruence struktury, faktorstruktura, axiomy rovnosti
 
 Mějme ekvivalenci $~$ na množině $A$, funkci $f: A^n arrow A$ a relaci $R subs A^n$. Říkáme, že $~$ je:
 - _kongruencí_ pro funkci $f$, pokud pro všechna $a_i, b_i in A$ takové, že $a_i ~ b_i$ ($1 <= i <= n$), platí $f(a_1, dots, a_n) ~ f(b_1, dots, b_n)$
-- _kongruencí_ pro relaci $R$, pokud pro všechna $a_i, b_i in A$ takové, že $a_i ~ b_i$ ($1 <= i <= n$), platí $(a_1, dots, a_n) in R$ právě tehdy, když $(b_1, dots, n_n) in R$
+- _kongruencí_ pro relaci $R$, pokud pro všechna $a_i, b_i in A$ takové, že $a_i ~ b_i$ ($1 <= i <= n$), platí $(a_1, dots, a_n) in R$ právě tehdy, když $(b_1, dots, b_n) in R$
 
 _Kongruence struktury_ $cA$ je ekvivalence $~$ na množině $A$, která je kongruencí pro všechny funkce a relace $cA$.
 
@@ -168,6 +170,8 @@ Které substituce se nám hodí? Takové, po jejichž provedení se dané výraz
 Mějme konečnou množinu výrazů $S = {E_1, dots, E_n}$. Substituce $sigma$ je _unifikace_ pro $S$, pokud $E_1 sigma = dots = E_n sigma$, neboli $S sigma$ obsahuje jediný výraz. Unifikace pro $S$ je _nejobecnější_, pokud pro každou unifikaci $tau$ pro $S$ existuje substituce $lambda$ t.ž. $tau = sigma lambda$. Těch může být více, liší se ale pouze přejmenováním proměnných.
 
 Uvažme množinu výrazů $S = {P(f(x), y), P(f(a), w)}$. Nejobecnější unifikací pro $S "je" sigma = {x\/a, y\/w}$. Jinou unifikací je $tau = {x\/a, y\/c, w\/b}$, není ale nejobecnější, nelze z ní získat např. unifikaci $rho = {x\/a, y\/c, w\/c}$. Unifikaci $tau$ naopak lze získat z nejobecnější unifikace pomocí substituce $lambda = {w\/b}, tau = sigma lambda$.
+
+// todo: rezoluce v predikátové logice pořádně
 
 == (P10) Signatura, jazyk, struktura
 
@@ -306,7 +310,7 @@ Např. pro $phi(x, y) = E(x, y)$ je $phi^(cal(G), v)(x,y)$ množina všech souse
 Pojem _extenze_ je definován stejně jako ve výrokové logice.
 - _Extenze_ teorie $T$ je libovolná $T'$ v jazyce $L' supset.eq L$ splňující $CsqL(T) subs "Csq"_L' (T')$
 - Je to _jednoduchá_ extenze, pokud $L' = L$
-- Je to _konzervativní extenze_, pokud $CsqL(T) = CsqL(T') = "Csq"_L' (T') inter "Fm"_L$ kde $"Fm"_L$ značí možinu všech výrokových formulí jazyka $L$
+- Je to _konzervativní extenze_, pokud $CsqL(T) = "Csq"_L' (T') = "Csq"_L' (T') inter "Fm"_L$#footnote[fr] kde $"Fm"_L$ značí možinu všech výrokových formulí jazyka $L$
 - Teorie $T$ je ekvivalentní s $T'$, pokud jsou si navzájem extenzí
 
 Z toho vyplyne:
@@ -354,10 +358,9 @@ Mějme třídu struktur $K subs M_L$ v nějakém jazyce $L$. $K$ je:
 - _Otevřeně axiomatizovatelná_, pokud je axiomatizovatelná otevřenou teorií (otevřená teorie je teorie co používá jen existenční kvantifikátory)
 
 // todo: fix links
-Např. tělesa jsou konečně, ale ne otevřeně axiomatizovatelná. Dále pak teorie konečných grafů není axiomatizovatelná (viz L7)
+Např. tělesa jsou konečně, ale ne otevřeně axiomatizovatelná (potřebujeme univerzální požadavek na existenci inverzního prvku). Dále pak teorie konečných grafů není axiomatizovatelná (viz L7).
 
-== (P20) Rekurzivní axiomatizace, rekurzivní axiomatizovatelnost, rekurzivně spočetná kompletace
-// FIXME rewrite, tohle je jen copy-paste ze skript
+== (P19) Teorie konečné struktury v konečném jazyce s rovností je rozhodnutelná
 
 Povolili jsme, aby teorie $T$, ve které dokazujeme, byla nekonečná. Pokud chceme ověřit, že je daný objekt (tablo, rezoluční strom, posloupnost formulí) korektním důkazem, potřebujeme nějaký algoritmický přístup ke všem axiomům $T$. Jednou z možností by bylo požadovat _enumerátor_ $T$ , tj. algoritmus, který vypisuje na výstup axiomy z $T$, a každý axiom někdy vypíše ($T$ musí být spočetná, resp. stačí že univerzum je spočetné). Potom by bylo snadné potvrdit, že je daný důkaz korektní. Pokud bychom ale dostali důkaz, který použil chybný axiom, který v T není, nikdy bychom se to nedozvěděli: nekonečně dlouho bychom čekali, zda jej enumerátor přeci jen nevypíše. Požadujeme proto silnější vlastnost, která umožňuje rozpoznat i chybné důkazy.
 
@@ -373,9 +376,8 @@ O teorii $T$ říkáme, že je
 
 Je-li $cA$ konečná struktura v konečném jazyce s rovností, potom je teorie Th(A) rekurzivně axiomatizovatelná.
 
-Důkaz: Očíslujme prvky domény jako $A = {a_1, dots, a_n}$. Teorii $Th(cA)$ lze axiomatizovat jedinou sentencí, která je tvaru "existuje právě $n$ prvků $a_1,dots, a_n$ splňujících právě ty základní vztahy o funkčních hodnotách a relacích, které platí ve struktuře $cA$"
+Důkaz: Očíslujme prvky domény jako $A = {a_1, dots, a_n}$. Teorii $Th(cA)$ (všechny sentence platné v $cA$) lze axiomatizovat jedinou sentencí, která je tvaru "existuje právě $n$ prvků $a_1,dots, a_n$ splňujících právě ty základní vztahy o funkčních hodnotách a relacích, které platí ve struktuře $cA$"
 
-// todo: co je Th(cA)?
 Algoritmus pro rozhodnutí $phi in Th(cA)$:
 ```
 Input: sentence φ
@@ -384,13 +386,28 @@ Input: sentence φ
 3. Pokud φ platí pro všechna ohodnocení → vrať ANO
 4. Jinak → vrať NE
 ```
+== (P20) Rekurzivní axiomatizace, rekurzivní axiomatizovatelnost, rekurzivně spočetná kompletace
+
+V dokazovacích systémech potřebujeme přístup k axiomům v teoriích (které můžou být nekonečné). Nabízí se _enumerátor_, nějaký algoritmus co každý axiom někdy vypíše (nutný předpoklad je, aby $T$ bylo spočetné, resp. aby jazyk byl spočetný). Pokud bychom ale dostali důkaz, který použil chybný axiom, který v T není,
+nikdy bychom se to nedozvěděli: nekonečně dlouho bychom čekali, zda jej enumerátor přeci
+jen nevypíše. Požadujeme proto silnější vlastnost, která umožňuje rozpoznat i chybné důkazy
+
+Teorie $T$ je _rekurzivně axiomatizovaná_, pokud existuje algoritmus, který pro každou formuli $phi$ odpoví, zdali $phi in T$.
+
+// _Rekurzivní axiomatizace_ je pak už nějaká konkrétní množina axiomů, která axiomatizuje nějakou teorii a zároveň pro tuto teorii existuje ten algoritmus.
+
+Třída $L$-struktur $K subs M_L$ je _rekurzivně axiomatizovatelná_, pokud existuje rekurzivně axiomatizovaná $L$-teorie $T$ taková, že $K = M_L (T)$. Teorie $T'$ je rekurzivně axiomatizovatelná, pokud je rekurzivně axiomatizovatelná třída jejích modelů, neboli pokud je $T'$ ekvivalentní nějaké rekurzivně axiomatizované teorii.
+
+Jinak řečeno, _rekurzivní axiomatizace_ je vlastnost teorií, kdežto _rekurzivní axiomatizovatelnost_ je vlastnost struktur.
+
+Řekneme, že teorie $T$ má rekurzivně spočetnou kompletaci, pokud má až na ekvivalenci jen spočetně mnoho kompletních jednoduchých extenzí a (nějaká) množina až na ekvivalenci všech kompletních jednoduchých extenzí teorie $T$ je rekurzivně spočetná, tj. existuje algoritmus, který pro danou vstupní dvojici přirozených čísel $(i, j)$ vypíše na výstup $i$-tý axiom $j$-té extenze (v nějakém pevně daném uspořádání, na což potřebujeme spočetný jazyk), nebo odpoví, že takový axiom už neexistuje (je-li extenzí méně než $j$, nebo má-li $j$-tá extenze méně než $i$ axiomů).
 
 == (P21) Rozhodnutelná a částečně rozhodnutelná teorie
 
-Teorie $T$ je _rozhodnutelná_ $<=>$ existuje algoritmus, který pro každou vstupní formuli $phi$ doběhne a odpoví, zda $T models phi$.
+Také nás zajímá, zda můžeme v dané teorii $T$ "algoritmicky rozhodovat pravdu" (tj. platnost vstupní formule).
 
-Teorie $T$ je _částečně rozhodnutelná_ $<=>$ existuje algoritmus, který pro každou vstupní formuli $phi$:
-  - pokud $T models phi$: doběhne a odpoví "ano"
-  - pokud $T tack.r.double.not phi$: buď nedoběhne, nebo doběhne a odpoví "ne"
-
-Pokud $T$ je rekurzovně axiomatizovatelná, daný algoritmus je systematické tablo (viz T5).
+O teorii $T$ říkáme, že je:
+- _rozhodnutelná_, pokud existuje algoritmus, který pro každou vstupní formuli $phi$ doběhne a odpoví, zda $T models phi$
+- _částečně rozhodnutelná_, pokud existuje algoritmus, který pro každou vstupní formuli $phi$
+  - doběhne a odpoví "ano", pokud $T models phi$
+  - buď nedoběhne, nebo odpoví "ne", pokud $T modelsnot phi$
