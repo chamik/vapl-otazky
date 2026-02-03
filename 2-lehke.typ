@@ -8,19 +8,19 @@ Mějme konečný jazyk $PP$ a libovolnou $M subs MP$. Pak existují $phi_"DNF" "
 $ phi_"DNF" = or.big_(v in M) and.big_(p in PP) p^(v(p)) $
 $ phi_"CNF" = and.big_(v in overline(M)) or.big_(p in PP) overline(p^(v(p))) = and.big_(v in.not M) or.big_(p in PP) p^(1 - v(p)) $
 
-_Důkaz_: Pro DNF, každá elementární konjunkce popisuje jeden model. CNF je duální k $phi_"DNF"$ sestrojenému pro doplněk $M' = overline(M)$; každá klauzule v konjunkci "zakazuje jeden nemodel". Každý výrok má svoji pravdivostní funkci, pro kterou zvládneme jednotlivým popisem/zákazem modelu/nemodelu vytvořit správnou formuli.
+_Důkaz_: Pro DNF, každá elementární konjunkce popisuje jeden model. CNF je duální k $phi_"DNF"$ sestrojenému pro doplněk $M' = overline(M)$; každá klauzule v konjunkci "zakazuje jeden nemodel". Každý výrok má svoji pravdivostní funkci, pro kterou zvládneme jednotlivým popisem/zákazem modelu/nemodelu vytvořit správnou formuli..
 
 == (L2) 2-SAT, algoritmus implikačního grafu, jeho korektnost
 
 2-SAT je sat kde má každá klauzule nejvýše dva literály. 2-klauzuli $cl_1 or cl_2$ lze chápat jako implikace $cln_1 impl cl_2 "a" cln_2 impl cl_1$. Implikační graf je graf, kde vrcholy jsou literály a hrany jsou dány implikacemi. Chceme najít komponenty silné souvislosti v tomto grafu, neboť všechny literály v této komponentě musí být ohodnoceny stejně (jinak by se nám rozbil implikační řetízek). Dvojice opačných literálů v jedné komponentě tedy znamená nesplnitelnost.
 
-Výrok $phi$ je splnitelný, když v implikačním grafu komponenta silné souvislosti neobsahuje $cln "a" cl$
+Výrok $phi$ je splnitelný, když v implikačním grafu žádná komponenta silné souvislosti neobsahuje zároveň $cln$~a~$cl$.
 
-_Důkaz_: Mějme implikační graf $G_phi$. Vytvořme $G_phi^*$ _kontrakcí_ komponent silné souvislosti (čímž odstraníme cykly). $G_phi^*$ je DAG, zvolme na něm topologické uspořádání. Pak vždy volím první neohodnocenou komponentu a nastavím literály v ní na 0. Proč pak $phi$ platí?
+_Důkaz_: Mějme implikační graf $G_phi$. Vytvořme $G_phi^*$ _kontrakcí_ komponent silné souvislosti (čímž odstraníme cykly). $G_phi^*$ je DAG, zvolme na něm topologické uspořádání. Pak dokola volím první neohodnocenou komponentu a nastavím literály v ní na 0, literály v opačné komponentě na 1. Proč pak $phi$ platí?
 
 Jednotková klauzule musí platit, protože v $G_phi$ máme $cln impl cl$ a tato hrana je i v $G_phi^*$, tudíž v topologickém uspořádání $cln$ předchází $cl$.
 
-Podobně pro 2-klauzule. Pokud mám $cl_1 or cl_2$, tak v $G_phi$ je $cln_1 impl cl_2 "a" cln_2 impl cl_1$. Pokud jsme $l_1$ ohodnotili dříve, pak to kvůli topologickému uspořádání bylo $cln_1 = 0$, tedy $cl_1$ platí. Podobně i v opačném případě.
+Podobně pro 2-klauzule. Pokud mám $cl_1 or cl_2$, tak v $G_phi$ je $cln_1 impl cl_2 "a" cln_2 impl cl_1$. Pokud jsme $cl_1$ ohodnotili dříve, pak to kvůli topologickému uspořádání bylo $cln_1 = 0$, tedy $cl_1$ platí. Podobně i v opačném případě.
 
 == (L3) Horn-SAT, Algoritmus jednotkové propagace, jeho korektnost
 
@@ -41,22 +41,24 @@ Nyní algoritmus:
 
 \*To funguje díky "hornovskosti" výroku. Pokud ve výroku není jednotkový literál, pak každá klauzule obsahuje alespoň dva literály a nejvýše jeden z nich může být pozitivní. Když tedy nastavíme všechny zbývající literály na 0, určitě tím splníme všechny klauzule.
 
-== (L4) Vlastnosti extenze teorií
+== (L4) [TODO] Vlastnosti extenze o definice
 
 == (L5) Vztah definovatelných množin a automorfismů
 
 _Automorfismus_ je izomorfismus struktury $cA$ na $cA$. Viz (P15) pro definovatelné množiny.
 
-Je-li $D subs A^n$ _definovatelná_ ve struktuře $cA$, potom pro každý automorfismus $h in "Aut"(cA)$ platí $h[D] = D$ (kde $h[D]$ značí ${h(overline(a) | overline(a) in D)}$). Je-li $D$ definovatelná s parametry $b$, platí totéž pro automorfismy identické na $overline(b)$ _($thin$fixující $overline(b)$)_, tj. takové, že $h(overline(b)) = overline(b)$.
+Je-li $D subs A^n$ _definovatelná_ ve struktuře $cA$, potom pro každý automorfismus $h in "Aut"(cA)$ platí $h[D] = D$ (kde $h[D]$ značí ${h(overline(a)) | overline(a) in D}$). Je-li $D$ definovatelná s parametry $b$, platí totéž pro automorfismy identické na $overline(b)$ _($thin$fixující $overline(b)$)_, tj. takové, že $h(overline(b)) = overline(b)$.
 
 _Důkaz:_ Jen verze s parametry. Nechť $D = phi^(cA, overline(b))(overline(x), overline(y))$. Potom pro každé $overline(a) in A^n$ platí ekvivalence:
 
 $ overline(a) in D &arrow.l.r.double&& cA models phi[e(overline(x)\/overline(a), overline(y)\/overline(b))]\
-&arrow.l.r.double&& cA models phi[(e compose h)(overline(x)\/overline(a), overline(y)\/overline(b))]\
+&arrow.l.r.double&& cA models phi[h(e(overline(x)\/overline(a), overline(y)\/overline(b)))]\
 &arrow.l.r.double&& cA models phi[e(overline(x)\/h(overline(a)), overline(y)\/h(overline(b)))]\
 &arrow.l.r.double&& cA models phi[e(overline(x)\/h(overline(a)), overline(y)\/overline(b))]\
 &arrow.l.r.double&& h(overline(a)) in D
 $
+
+== (L6) [TODO] Tablo metoda v jazyce s rovností
 
 == (L7) Věta o kompaktnosti a její aplikace <L7>
 
@@ -95,13 +97,13 @@ Chceme ukázat $cA models C[e]$ pro libovolné ohodnocení $e$. Pokud $cA models
 
 Korektnost je stejná jako v (L8).
 
-== (L10) Nestandardní model
+== (L10) Nestandardní model přirozených čísel
 
-Nechť $underline(NN) = sl NN, S, +, dot, 0, <= sr$ je standardní model přirozených čísel. $Th(underline(NN))$ je množina všech sentencí pravdivých v $underline(NN)$. Pro $n in NN$ definujeme n-tý numerál jako term $n = S(S(dots (S(0)) dots))$. Vezměme nový konstantní symbol $c$ a vyjádřeme, že je ostře větší než každý n-tý numerál:#footnote[Znaménko $<$ přitom není v jazyce, takže nevím, jak jde tohle udělat? Idk takhle to je ve skriptech.] $ T = Th(underline(NN) union {underline(n) < c | n in NN}) $
+Nechť $underline(NN) = sl NN, S, +, dot, 0, <= sr$ je standardní model přirozených čísel. $Th(underline(NN))$ je množina všech sentencí pravdivých v $underline(NN)$. Pro $n in NN$ definujeme $n$-tý numerál jako term $n = S(S(dots (S(0)) dots))$. Vezměme nový konstantní symbol $c$ a vyjádřeme, že je ostře větší než každý $n$-tý numerál:#footnote[Znaménko $<$ přitom není v jazyce, takže nevím, jak jde tohle udělat? Idk takhle to je ve skriptech.] $ T = Th(underline(NN)) union {underline(n) < c | n in NN} $
 
 Každá konečná část teorie $T$ má model. Z (L7) tedy plyne, že i $T$ má model.
 
-== (L11) Existence algebraického spočetného tělesa
+== (L11) Existence spočetného algebraicky uzavřeného tělesa
 
 $cA$ je algebraicky uzavřené, pokud každý polynom nenulového stupně v něm má kořen. Např. $RR$ není, protože $x^2 + 1 = 0$; $CC$ už je.
 

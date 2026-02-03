@@ -157,6 +157,8 @@ ohodnocení odpovídají modelům $(0, 1, 0, 1, 0)$ a $(0, 0, 0, 1, 0)$.
 
 _Rezoluční pravidlo:_ Mějme klauzule $C_1, C_2$ a literál $cl$ takový, že $cl in C_1 "a" cln in C_2$. Potom _rezolventa_ klauzulí $C_1 "a" C_2$ přes literál $cl$ je: $ C = (C_1 \\ {cl}) union (C_1 \\ {cln}) $
 
+Pokud $cV models C_1$ a $cV models C_2$, tak $cV models C$, tedy rezoluční pravidlo je užitečné (zachovává splnitelnost).
+
 _Rezoluční důkaz_ je konečná posloupnost klauzulí $C_0, C_1, dots, C_N = C$ taková, že pro každé $i$ buď $C_i in S$, nebo $C_i$ je rezolventou nějakých $C_j, C_k "kde" j,k < i$. Pokud rezoluční důkaz exituje, říkáme, že $C$ je _rezolucí dokazatelná_ z $S$, píšeme $S scripts(tack)_R C$. _Rezoluční zamítnutí_ CNF formule $S$ je rezoluční důkaz $square "z" S$, v tom případě je $S$ _rezolucí zamítnutelná_.
 
 V predikátové logice, _substituce_ je konečná množina $sigma = {x_1 \/t_1, dots, x_n \/t_n}$, kde $x_i$ jsou navzájem různé proměnné a $t_i$ jsou termy (viz P11), přičemž vyžadujeme, aby $t_i$ nebyl roven proměnné $x_i$. Substituce je
@@ -360,19 +362,19 @@ Mějme třídu struktur $K subs M_L$ v nějakém jazyce $L$. $K$ je:
 // todo: fix links
 Např. tělesa jsou konečně, ale ne otevřeně axiomatizovatelná (potřebujeme univerzální požadavek na existenci inverzního prvku). Dále pak teorie konečných grafů není axiomatizovatelná (viz L7).
 
-== (P19) Teorie konečné struktury v konečném jazyce s rovností je rozhodnutelná
+== (P20) Rekurzivní axiomatizace, rekurzivní axiomatizovatelnost, rekurzivně spočetná kompletace
 
-Povolili jsme, aby teorie $T$, ve které dokazujeme, byla nekonečná. Pokud chceme ověřit, že je daný objekt (tablo, rezoluční strom, posloupnost formulí) korektním důkazem, potřebujeme nějaký algoritmický přístup ke všem axiomům $T$. Jednou z možností by bylo požadovat _enumerátor_ $T$ , tj. algoritmus, který vypisuje na výstup axiomy z $T$, a každý axiom někdy vypíše ($T$ musí být spočetná, resp. stačí že univerzum je spočetné). Potom by bylo snadné potvrdit, že je daný důkaz korektní. Pokud bychom ale dostali důkaz, který použil chybný axiom, který v T není, nikdy bychom se to nedozvěděli: nekonečně dlouho bychom čekali, zda jej enumerátor přeci jen nevypíše. Požadujeme proto silnější vlastnost, která umožňuje rozpoznat i chybné důkazy.
+V dokazovacích systémech potřebujeme přístup k axiomům v teoriích (které můžou být nekonečné). Nabízí se _enumerátor_, nějaký algoritmus co každý axiom někdy vypíše (nutný předpoklad je, aby $T$ bylo spočetné, resp. aby jazyk byl spočetný). Pokud bychom ale dostali důkaz, který použil chybný axiom, který v T není, nikdy bychom se to nedozvěděli: nekonečně dlouho bychom čekali, zda jej enumerátor přeci jen nevypíše. Požadujeme proto silnější vlastnost, která umožňuje rozpoznat i chybné důkazy.
 
-Teorie $T$ je _rekurzivně axiomatizovatelná_, pokud existuje algoritmus, který pro každou vstupní formuli $phi$ doběhne a odpoví, zda $phi in T$.
+Teorie $T$ je _rekurzivně axiomatizovaná_, pokud existuje algoritmus, který pro každou formuli $phi$ odpoví, zdali $phi in T$.
 
-Zaměříme se na otázku, zda můžeme v dané teorii T "algoritmicky rozhodovat pravdu" (tj. platnost vstupní formule). Pokud ano, říkáme, že je teorie rozhodnutelná. To je ale poměrně silná vlastnost, definujeme proto také částečnou rozhodnutelnost, která znamená, že pokud formule platí, algoritmus nám to řekne, ale pokud neplatí, nikdy se nemusíme dočkat odpovědi.
+// _Rekurzivní axiomatizace_ je pak už nějaká konkrétní množina axiomů, která axiomatizuje nějakou teorii a zároveň pro tuto teorii existuje ten algoritmus.
 
-O teorii $T$ říkáme, že je
-- _Rozhodnutelná_, pokud existuje algoritmus, který pro každou vstupní formuli $phi$ doběhne a odpoví, zda $T models phi$
-- _Částečně rozhodnutelná_, pokud existuje algoritmus, který pro každou vstupní formuli:
-  - pokud $T models phi$, doběhne a odpoví "ano"
-  - pokud $T tack.r.double.not phi$, buď nedoběhne, nebo doběhne a odpoví "ne"
+Třída $L$-struktur $K subs M_L$ je _rekurzivně axiomatizovatelná_, pokud existuje rekurzivně axiomatizovaná $L$-teorie $T$ taková, že $K = M_L (T)$. Teorie $T'$ je rekurzivně axiomatizovatelná, pokud je rekurzivně axiomatizovatelná třída jejích modelů, neboli pokud je $T'$ ekvivalentní nějaké rekurzivně axiomatizované teorii.
+
+Jinak řečeno, _rekurzivní axiomatizace_ je vlastnost teorií, kdežto _rekurzivní axiomatizovatelnost_ je vlastnost struktur.
+
+Řekneme, že teorie $T$ má rekurzivně spočetnou kompletaci, pokud má až na ekvivalenci jen spočetně mnoho kompletních jednoduchých extenzí a (nějaká) množina až na ekvivalenci všech kompletních jednoduchých extenzí teorie $T$ je rekurzivně spočetná, tj. existuje algoritmus, který pro danou vstupní dvojici přirozených čísel $(i, j)$ vypíše na výstup $i$-tý axiom $j$-té extenze (v nějakém pevně daném uspořádání, na což potřebujeme spočetný jazyk), nebo odpoví, že takový axiom už neexistuje (je-li extenzí méně než $j$, nebo má-li $j$-tá extenze méně než $i$ axiomů).
 
 Je-li $cA$ konečná struktura v konečném jazyce s rovností, potom je teorie Th(A) rekurzivně axiomatizovatelná.
 
@@ -386,21 +388,6 @@ Input: sentence φ
 3. Pokud φ platí pro všechna ohodnocení → vrať ANO
 4. Jinak → vrať NE
 ```
-== (P20) Rekurzivní axiomatizace, rekurzivní axiomatizovatelnost, rekurzivně spočetná kompletace
-
-V dokazovacích systémech potřebujeme přístup k axiomům v teoriích (které můžou být nekonečné). Nabízí se _enumerátor_, nějaký algoritmus co každý axiom někdy vypíše (nutný předpoklad je, aby $T$ bylo spočetné, resp. aby jazyk byl spočetný). Pokud bychom ale dostali důkaz, který použil chybný axiom, který v T není,
-nikdy bychom se to nedozvěděli: nekonečně dlouho bychom čekali, zda jej enumerátor přeci
-jen nevypíše. Požadujeme proto silnější vlastnost, která umožňuje rozpoznat i chybné důkazy
-
-Teorie $T$ je _rekurzivně axiomatizovaná_, pokud existuje algoritmus, který pro každou formuli $phi$ odpoví, zdali $phi in T$.
-
-// _Rekurzivní axiomatizace_ je pak už nějaká konkrétní množina axiomů, která axiomatizuje nějakou teorii a zároveň pro tuto teorii existuje ten algoritmus.
-
-Třída $L$-struktur $K subs M_L$ je _rekurzivně axiomatizovatelná_, pokud existuje rekurzivně axiomatizovaná $L$-teorie $T$ taková, že $K = M_L (T)$. Teorie $T'$ je rekurzivně axiomatizovatelná, pokud je rekurzivně axiomatizovatelná třída jejích modelů, neboli pokud je $T'$ ekvivalentní nějaké rekurzivně axiomatizované teorii.
-
-Jinak řečeno, _rekurzivní axiomatizace_ je vlastnost teorií, kdežto _rekurzivní axiomatizovatelnost_ je vlastnost struktur.
-
-Řekneme, že teorie $T$ má rekurzivně spočetnou kompletaci, pokud má až na ekvivalenci jen spočetně mnoho kompletních jednoduchých extenzí a (nějaká) množina až na ekvivalenci všech kompletních jednoduchých extenzí teorie $T$ je rekurzivně spočetná, tj. existuje algoritmus, který pro danou vstupní dvojici přirozených čísel $(i, j)$ vypíše na výstup $i$-tý axiom $j$-té extenze (v nějakém pevně daném uspořádání, na což potřebujeme spočetný jazyk), nebo odpoví, že takový axiom už neexistuje (je-li extenzí méně než $j$, nebo má-li $j$-tá extenze méně než $i$ axiomů).
 
 == (P21) Rozhodnutelná a částečně rozhodnutelná teorie
 
