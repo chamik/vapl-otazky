@@ -137,6 +137,14 @@ idk asi (L7)
 
 Mějme třídu struktur $K subs M_L$ a uvážíme její doplněk $overline(K) = M_L \\ K$. Potom $K$ je konečně axiomatizovatelné, právě tehdy, když $K$ i $overline(K)$ jsou axiomatizovatelné.
 
+_Důkaz:_ Je-li $K$ konečně axiomatizovatelná, pak je axiomatizovatelná i konečně mnoha sentencemi $phi_1, dots, phi_n$. K axiomatizaci $overline(K)$ nám postačí $psi = not(phi_1 and dots and phi_n), M(psi) = overline(K)$.
+
+Nechť jsou teorie $T, S$ takové, že $M(T) = K$ a $M(S) = overline(K)$. Uvažme teorii $T union S$; ta je sporná, neboť:
+
+$ M(T union S) = M(T) inter M(S) = K inter overline(K) = emptyset $
+
+Podle věty o kompaktnosti (L7) existují 
+
 == (T14) Rekurzivně axiomatizovaná teorie s rekurzivně spočetnou kompletací je rozhodnutelná
 
 Řekneme, že teorie $T$ má _rekurzivně spočetnou kompletaci_, pokud má až na ekvivalenci jen spočetně mnoho kompletních jednoduchých extenzí a (nějaká) množina až na ekvivalenci všech kompletních jednoduchých extenzí teorie $T$ je rekurzivně spočetná, tj. existuje algoritmus, který pro danou vstupní dvojici přirozených

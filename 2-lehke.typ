@@ -72,6 +72,8 @@ Důsledek: Teorie konečných grafů není axiomatizovatelná: Mějme $T$ a jej�
 2. Každá konečná podmnožina $T^*$ má model. Řekněme, že největší axiom vybrán v něm je $exists x_1, dots, x_n$. Konečný graf s $n$ vrcholy toto určitě splňuje.
 3. Podle věty o kompaktnosti má celá rozšířená teorie $T^*$ model. Ale tento model musí splňovat všechny přidané axiomy, tedy obsahovat nekonečně mnoho prvků - je to nekonečný graf. Zároveň ale musí být modelem původní teorie T, tedy konečným grafem. Spor!
 
+Taky (T13).
+
 == (L8) Korektnost rezoluce ve výrokové logice
 
 Je-li CNF formule S rezolucí zamítnutelná, je S nesplnitelná.
