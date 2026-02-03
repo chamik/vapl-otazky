@@ -4,18 +4,16 @@
 
 == (P1) Model ve výrokové logice, pravdivostní funkce výroku
 
-Pravdivostní funkce $f_(phi, PP): {0,1}^(|PP|) arrow {0, 1}$ je definována induktivně:
-- Je-li $phi$ $i$-tý prvovýrok z $PP$, pak $f_(phi, PP)(x_0, dots, x_(n-1)) = x_i$
-- Je-li $phi = not phi'$, pak $f_(phi, PP)(x_0, dots, x_(n-1)) = f_not (f_(phi, PP)(x_0, dots, x_(n-1)))$
-- Je-li $phi = (phi' square thin phi'')$, pak $f_(phi, PP)(x_0, dots, x_(n-1)) = f_square (f_(phi', PP)(x_0, dots, x_(n-1)), f_(phi'', PP)(x_0, dots, x_(n-1)))$
-
-$square in {or, and, impl, eqviv}$ a mají pravdivostní funkce podle tabulek.
-
 Model jazyka je libovolné ohodnocení $v: PP arrow {0, 1}$. Pro $PP = {p, q}$ např. $v = {(p, 0), (q, 1)}$.
 
 Všechny modely jazyka $PP$ jsou $MP = {v | v: PP arrow {0, 1}} = {0,1}^PP$ (množina funkcí, resp. množina množin dvojic).
 
 Pro jednoduchost píšeme $v = (0, 1)$. Tedy ztotožňujeme ${0, 1}^PP$ a ${0, 1}^(|PP|)$. To můžeme udělat díky uspořádání jazyka $iota: {0, ..., n-1} arrow PP$.
+
+Pravdivostní funkce $f_(phi, PP): {0,1}^(|PP|) arrow {0, 1}$ je definována induktivně:
+- Je-li $phi$ $i$-tý prvovýrok z $PP$, pak $f_(phi, PP)(x_0, dots, x_(n-1)) = x_i$
+- Je-li $phi = not phi'$, pak $f_(phi, PP)(x_0, dots, x_(n-1)) = f_not (f_(phi, PP)(x_0, dots, x_(n-1)))$
+- Je-li $phi = (phi' square thin phi'')$, pak $f_(phi, PP)(x_0, dots, x_(n-1)) = f_square (f_(phi', PP)(x_0, dots, x_(n-1)), f_(phi'', PP)(x_0, dots, x_(n-1)))$\ $square in {or, and, impl, eqviv}$ a mají pravdivostní funkce podle tabulek.
 
 Mějme výrok $phi$ v $PP$ a model $v in MP$. Pokud platí $f_(phi, PP)(v) = 1$, říkáme, že výrok $phi$ _platí_ v modelu $v$, píšeme $v models p$. Množina všech modelů výroku je $MP (phi) = {v in MP | v models phi} = f_(phi, PP)^(-1)[1]$.
 
@@ -171,10 +169,6 @@ Mějme konečnou množinu výrazů $S = {E_1, dots, E_n}$. Substituce $sigma$ je
 
 Uvažme množinu výrazů $S = {P(f(x), y), P(f(a), w)}$. Nejobecnější unifikací pro $S "je" sigma = {x\/a, y\/w}$. Jinou unifikací je $tau = {x\/a, y\/c, w\/b}$, není ale nejobecnější, nelze z ní získat např. unifikaci $rho = {x\/a, y\/c, w\/c}$. Unifikaci $tau$ naopak lze získat z nejobecnější unifikace pomocí substituce $lambda = {w\/b}, tau = sigma lambda$.
 
-#line()
-
-Rezoluce v predikátové logice.
-
 == (P10) Signatura, jazyk, struktura
 
 _Signatura_ je dvojice $sl cR, cF sr$, kde $cR, cF$ jsou disjunktní množiny symbolů (relační a funkční zahrnující konstantní) spolu s danými aritami (danými funkcí $text("ar"): cR union cF arrow NN$) a neobsahující symbol $=$, který je rezervovaný pro _rovnost_. Signatura se často zapisuje jen výčtem symbolů, je-li arita a to, zdali jsou relační/funkční, zřejmé z kontextu.
@@ -312,7 +306,7 @@ Např. pro $phi(x, y) = E(x, y)$ je $phi^(cal(G), v)(x,y)$ množina všech souse
 Pojem _extenze_ je definován stejně jako ve výrokové logice.
 - _Extenze_ teorie $T$ je libovolná $T'$ v jazyce $L' supset.eq L$ splňující $CsqL(T) subs "Csq"_L' (T')$
 - Je to _jednoduchá_ extenze, pokud $L' = L$
-- Je to _konzervativní extenze_, pokud $CsqL(T) = "Csq"_L' (T') = "Csq"_L' (T') inter "Fm"_L$ kde $"Fm"_L$ značí možinu všech výrokových formulí jazyka $L$
+- Je to _konzervativní extenze_, pokud $CsqL(T) = CsqL(T') = "Csq"_L' (T') inter "Fm"_L$ kde $"Fm"_L$ značí možinu všech výrokových formulí jazyka $L$
 - Teorie $T$ je ekvivalentní s $T'$, pokud jsou si navzájem extenzí
 
 Z toho vyplyne:
