@@ -389,3 +389,13 @@ Input: sentence φ
 3. Pokud φ platí pro všechna ohodnocení → vrať ANO
 4. Jinak → vrať NE
 ```
+
+== (P21) Rozhodnutelná a částečně rozhodnutelná teorie
+
+Teorie $T$ je _rozhodnutelná_ $<=>$ existuje algoritmus, který pro každou vstupní formuli $phi$ doběhne a odpoví, zda $T models phi$.
+
+Teorie $T$ je _částečně rozhodnutelná_ $<=>$ existuje algoritmus, který pro každou vstupní formuli $phi$:
+  - pokud $T models phi$: doběhne a odpoví "ano"
+  - pokud $T tack.r.double.not phi$: buď nedoběhne, nebo doběhne a odpoví "ne"
+
+Pokud $T$ je rekurzovně axiomatizovatelná, daný algoritmus je systematické tablo (viz T5).

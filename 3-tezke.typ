@@ -60,7 +60,7 @@ Systematické tablo: Vstup: uspořádaná teorie $T = {alpha_1, alpha_2, ...}$, 
 - Pokud ještě zbývá axiom $alpha_i$ z $T$: na každou bezespornou větev připojíme T$alpha_i$
 - Pokud jsou všechny větve sporné: skončili jsme, máme systematický tablo důkaz
 // viz Rozhodnutelnost, tam je podobná věc "buď vrátí ano, nebo nedoběhne"
-- Opakujeme#footnote[Pokud bude teorie nekonečná a nikdy nenastane spor, budeme cyklit donekonečna. Není to v rozporu s žádnou s předem uvedených vět.]
+- Opakujeme#footnote[Pokud bude teorie nekonečná a nikdy nenastane spor, budeme cyklit donekonečna. Není to v rozporu s žádnou s předem uvedených vět. Viz P21.]
 
 == (T6) Věta o úplnosti rezoluce ve výrokové logice
 
