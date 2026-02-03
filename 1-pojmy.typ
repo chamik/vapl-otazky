@@ -362,7 +362,8 @@ Mějme třídu struktur $K subs M_L$ v nějakém jazyce $L$. $K$ je:
 // todo: fix links
 Např. tělesa jsou konečně, ale ne otevřeně axiomatizovatelná. Dále pak teorie konečných grafů není axiomatizovatelná (viz L7)
 
-== (P19) Teorie konečné struktury v konečném jazyce s rovností je rozhodnutelná
+== (P20) Rekurzivní axiomatizace, rekurzivní axiomatizovatelnost, rekurzivně spočetná kompletace
+// FIXME rewrite, tohle je jen copy-paste ze skript
 
 Povolili jsme, aby teorie $T$, ve které dokazujeme, byla nekonečná. Pokud chceme ověřit, že je daný objekt (tablo, rezoluční strom, posloupnost formulí) korektním důkazem, potřebujeme nějaký algoritmický přístup ke všem axiomům $T$. Jednou z možností by bylo požadovat _enumerátor_ $T$ , tj. algoritmus, který vypisuje na výstup axiomy z $T$, a každý axiom někdy vypíše ($T$ musí být spočetná, resp. stačí že univerzum je spočetné). Potom by bylo snadné potvrdit, že je daný důkaz korektní. Pokud bychom ale dostali důkaz, který použil chybný axiom, který v T není, nikdy bychom se to nedozvěděli: nekonečně dlouho bychom čekali, zda jej enumerátor přeci jen nevypíše. Požadujeme proto silnější vlastnost, která umožňuje rozpoznat i chybné důkazy.
 
