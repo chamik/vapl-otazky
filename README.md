@@ -2,7 +2,7 @@
 
 Zpracováno v lednu 2026. Určeno k předmětu [NAIL062 Výroková a predikátová logika](https://jbulin.github.io/teaching/fall/nail062/) na MFF UK.
 
-### → [PDF TADY](https://github.com/chamik/vapl-otazky/releases/latest/download/otazky.pdf) ←
+### ➡️ [PDF TADY](https://github.com/chamik/vapl-otazky/releases/latest/download/otazky.pdf) ⬅️
 
 ### Vývoj
 - VS Code, extension Tinymist Typst, otevřít `otazky.typ`, vpravo nahoře Open Preview, náhled se bude aktualizovat živě
