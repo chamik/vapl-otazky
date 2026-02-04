@@ -1,7 +1,7 @@
-name: Compile & release
+name: Compile & Release
 on: push
 jobs:
-  render-paper:
+  compile:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -13,10 +13,12 @@ jobs:
       - run: typst compile otazky.typ otazky.pdf
       - name: Set release date
         id: date
-        run: echo "timestamp=$(date +'%Y-%m-%d-%H-%M')" >> $GITHUB_OUTPUT
+        run: |
+          echo "timestamp=$(date +'%Y-%m-%d-%H-%M')" >> $GITHUB_OUTPUT
+          echo "display=$(date +'%Y-%m-%d %H:%M')" >> $GITHUB_OUTPUT
       - uses: softprops/action-gh-release@v1
         with:
           tag_name: release-${{ steps.date.outputs.timestamp }}
-          name: Release ${{ steps.date.outputs.timestamp }}
+          name: ${{ steps.date.outputs.display }}
           files: otazky.pdf
           generate_release_notes: true
