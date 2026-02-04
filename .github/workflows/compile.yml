@@ -1,0 +1,17 @@
+name: Compile & release
+on: push
+jobs:
+  render-paper:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: typst-community/setup-typst@v4
+      - run: typst compile otazky.typ otazky.pdf
+      - uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}-${{ github.run_number }}-$(date +'%Y-%m-%d-%H:%M')
+          name: Release ${{ github.ref_name }} $(date +'%Y-%m-%d %H:%M')
+          files: otazky.pdf
+          generate_release_notes: true
