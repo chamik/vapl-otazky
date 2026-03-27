@@ -156,11 +156,11 @@ ohodnocení odpovídají modelům $(0, 1, 0, 1, 0)$ a $(0, 0, 0, 1, 0)$.
 
 == (P9) Rezoluční pravidlo, (nejobecnější) unifikace, rezoluční důkaz a zamítnutí.
 
-_Rezoluční pravidlo:_ Mějme klauzule $C_1, C_2$ a literál $cl$ takový, že $cl in C_1 "a" cln in C_2$. Potom _rezolventa_ klauzulí $C_1 "a" C_2$ přes literál $cl$ je: $ C = (C_1 \\ {cl}) union (C_1 \\ {cln}) $
+_Rezoluční pravidlo:_ Mějme klauzule $C_1, C_2$ a literál $cl$ takový, že $cl in C_1 "a" cln in C_2$. Potom _rezolventa_ klauzulí $C_1 "a" C_2$ přes literál $cl$ je: $ C = (C_1 \\ {cl}) union (C_2 \\ {cln}) $
 
 Pokud $cV models C_1$ a $cV models C_2$, tak $cV models C$, tedy rezoluční pravidlo je užitečné (zachovává splnitelnost).
 
-_Rezoluční důkaz_ je konečná posloupnost klauzulí $C_0, C_1, dots, C_N = C$ taková, že pro každé $i$ buď $C_i in S$, nebo $C_i$ je rezolventou nějakých $C_j, C_k "kde" j,k < i$. Pokud rezoluční důkaz exituje, říkáme, že $C$ je _rezolucí dokazatelná_ z $S$, píšeme $S scripts(tack)_R C$. _Rezoluční zamítnutí_ CNF formule $S$ je rezoluční důkaz $square "z" S$, v tom případě je $S$ _rezolucí zamítnutelná_.
+_Rezoluční důkaz_ je konečná posloupnost klauzulí $C_0, C_1, dots, C_N = C$ taková, že pro každé $i$ buď $C_i in S$, nebo $C_i$ je rezolventou nějakých $C_j, C_k "kde" j,k < i$. Pokud rezoluční důkaz existuje, říkáme, že $C$ je _rezolucí dokazatelná_ z $S$, píšeme $S scripts(tack)_R C$. _Rezoluční zamítnutí_ CNF formule $S$ je rezoluční důkaz $square "z" S$, v tom případě je $S$ _rezolucí zamítnutelná_.
 
 V predikátové logice, _substituce_ je konečná množina $sigma = {x_1 \/t_1, dots, x_n \/t_n}$, kde $x_i$ jsou navzájem různé proměnné a $t_i$ jsou termy (viz P11), přičemž vyžadujeme, aby $t_i$ nebyl roven proměnné $x_i$. Substituce je
 - _základní_, pokud jsou všechny termy $t_i$ konstantní
@@ -182,7 +182,7 @@ _Signatura_ je dvojice $sl cR, cF sr$, kde $cR, cF$ jsou disjunktní množiny sy
 
 _Struktura_ v signatuře $sig$ je trojice $cA = sl A, cR^cA, cF^cA sr$, kde:
 - $A$ je neprázdná množina, _doména_, _univerzum_
-- $cR^cA = {R^cA | R in cR}$ kde $R^cA subs A^(ar(R))$ je je _interpretace_ relačního symbolu $R$
+- $cR^cA = {R^cA | R in cR}$ kde $R^cA subs A^(ar(R))$ je _interpretace_ relačního symbolu $R$
 - $cF^cA = {f^cA | f in cF}$ kde $f^cA: A^ar(f) arrow A$ je interpretace funkčního symbolu $f$ (speciální pro konstantní symbol $c in cF$ máme $c^cA in A$)
 
 Tady se střetávají symboly a významy, kupříkladu: symbol $+$ je binární funkce s aritou 2. Ve struktuře $sl NN, +^NN sr$ je $+^NN$ běžné sčítání: $+^NN (2,3)$ je rovno 5. Kdežto ve struktuře $sl ZZ_5, +^(ZZ_5) sr$ by to bylo sčítání modulo pěti: $+^(ZZ_5)(3,4)$ je rovno 2.
@@ -292,7 +292,7 @@ Jinak řečeno, vybereme nějakou podmnožinu B univerza A, vytvoříme z ní st
 
 Mějme $cA = struct$ a neprázdnou množinu $X subs A$. Označme B jako nejmenší podmnožinu A, která obsahuje X a je uzavřená na všechny funkce struktury $cA$. Potom o podstruktuře $cA harpoon.tr B$ říkáme, že je _generovaná_ množinou $X$ a značíme ji $cA sl X sr$.
 
-Mějme jazyky $L subs L'$, $L$-strukturu $cA$ a $L'$-strukturu $cA'$ na stejné doméně $A = A'$. Jestliže je interpretace každého symbolu z $L$ (relačního, funkčního, konstantního) stejná (relace, funkce, konstanta) v $cA$ i v $cA'$ potom říkáme, že struktura $cA'$ je _expanzí_ struktury $cA$ do jazyka $L'$ ($L'$-expanzí) a že $A$ je _reduktem_ struktury $cA'$ na jazyk $L$ ($L$-reduktem).
+Mějme jazyky $L subs L'$, $L$-strukturu $cA$ a $L'$-strukturu $cA'$ na stejné doméně $A = A'$. Jestliže je interpretace každého symbolu z $L$ (relačního, funkčního, konstantního) stejná (relace, funkce, konstanta) v $cA$ i v $cA'$ potom říkáme, že struktura $cA'$ je _expanzí_ struktury $cA$ do jazyka $L'$ ($L'$-expanzí) a že struktura $cA$ je _reduktem_ struktury $cA'$ na jazyk $L$ ($L$-reduktem).
 
 == (P15) Definovatelnost ve struktuře
 
@@ -324,7 +324,7 @@ Například v teorii grup můžeme zavést _binární_ funkční symbol $minus_b
 
 == (P17) Prenexní normální forma, Skolemova varianta
 
-_Prenexní normální forma_ je "vytknutí kvantifikátorů", formule $phi$ je _PNF_, je-li tvaru $ (Q_1 x_1)dots(Q_n x_n)phi' $ kde $Q_i$ je kvantifikátor a formule $phi'$ je otevřená. $phi'$ pak říkáme _otevřené jádro_ a $(Q_1 x_1)dots(Q_n x_n)$ je _kvantifikátorový prefix_. Jsou-li všechny kvantifikátory v PNF formuli univerzální, je pak $phi$ _univerzální formule_.
+_Prenexní normální forma_ je "vytknutí kvantifikátorů", formule $phi$ je v _PNF_, je-li tvaru $ (Q_1 x_1)dots(Q_n x_n)phi' $ kde $Q_i$ je kvantifikátor a formule $phi'$ je otevřená. $phi'$ pak říkáme _otevřené jádro_ a $(Q_1 x_1)dots(Q_n x_n)$ je _kvantifikátorový prefix_. Jsou-li všechny kvantifikátory v PNF formuli univerzální, je pak $phi$ _univerzální formule_.
 
 Mějme $L$-sentenci $phi$ v PNF, a nechť všechny její vázané proměnné jsou různé. Nechť existenční kvantifikátory v prefixu $phi$ jsou $(exists y_1),dots,(exists y_n)$ v tomto pořadí, a nechť pro každé $i$ jsou $(forall x_1),dots,(forall x_n_i)$ právě všechny univerzální kvantifikátory předcházející kvantifikátoru $(exists y_i)$ v prefixu $phi$. Označme $L'$ rozšíření $L$ o nové $n_i$-ární funkční symboly $f_1,...,f_n$, kde symbol $f_i$ je arity $n_i$ pro každé $i$. _Skolemova varianta_ sentence $phi$ je $L'$-sentence $phi_S$ vzniklá z $phi$ tak, že pro každé $i= 1, ...,n$:
 - odstraníme z prefixu kvantifikátor $(exists y_i)$
@@ -353,7 +353,7 @@ Za jakých okolností lze 'popsat' (axiomatizovat) třídu modelů respektive te
 Mějme třídu struktur $K subs M_L$ v nějakém jazyce $L$. $K$ je:
 - _Axiomatizovatelná_, pokud existuje $L$-teorie $T$ taková, že $M_L (T) = K$
 - _Konečně axiomatizovatelná_, pokud je axiomatizovatelná konečnou teorií
-- _Otevřeně axiomatizovatelná_, pokud je axiomatizovatelná otevřenou teorií (otevřená teorie je teorie co používá jen existenční kvantifikátory)
+- _Otevřeně axiomatizovatelná_, pokud je axiomatizovatelná otevřenou teorií (otevřená teorie je teorie, jejíž všechny axiomy jsou otevřené formule. Formule je otevřená, neobsahuje-li žádný kvantifikátor)
 
 // todo: fix links
 Např. tělesa jsou konečně, ale ne otevřeně axiomatizovatelná (potřebujeme univerzální požadavek na existenci inverzního prvku). Dále pak teorie konečných grafů není axiomatizovatelná (viz L7).
