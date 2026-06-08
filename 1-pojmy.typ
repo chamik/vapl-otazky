@@ -4,6 +4,13 @@
 
 == (P1) Model ve výrokové logice, pravdivostní funkce výroku
 
+Jazyk $PP$ je určený neprázdnou, obvykle spočetnou, množinou prvovýroků. Do jazyka patří kromě proměnných také logické spojky $and, not, dots$ a závorky.
+
+Výrok, resp. výroková formule, je prvek množiny $VFP$. $VFP$ je nejmenší množina splňující:
+- Pro každý prvovýrok $p in PP$ platí $p in VFP$
+- Pro každý výrok $phi in VFP$ je $(not phi)$ také prvek $VFP$
+- Pro každé $phi, psi in VFP$ jsou $(phi or psi), (phi and psi), (phi impl psi), (phi eqviv psi)$ také prvky $VFP$
+
 Pravdivostní funkce $f_(phi, PP): {0,1}^(|PP|) arrow {0, 1}$ je definována induktivně:
 - Je-li $phi$ $i$-tý prvovýrok z $PP$, pak $f_(phi, PP)(x_0, dots, x_(n-1)) = x_i$
 - Je-li $phi = not phi'$, pak $f_(phi, PP)(x_0, dots, x_(n-1)) = f_not (f_(phi, PP)(x_0, dots, x_(n-1)))$
@@ -27,6 +34,7 @@ Výrok $phi$ je:
 - _nezávislý_, pokud platí v nějakém modelu a neplatí v nějakém jiném modelu, $emptyset subset.neq MP(phi) subset.neq MP$, resp. není lživý, ani pravdivý
 - _splnitelný_, pokud má nějaký model, tj. není _lživý_, $MP (phi) neq emptyset$
 
+Teorie v jazyce $PP$ je libovolná množina výroků v $PP$, tedy $T subset.eq VFP$. Jednotlivým $phi in T$ říkáme také _axiomy_.
 
 Mějme teorii $T$ v jazyce $PP$, pak je výrok $phi$:
 - _pravdivý v/důsledek $T$_, $T models phi$, pokud $phi$ platí v každém modelu teorie, resp. $MP(T) subs MP(phi)$
@@ -40,13 +48,14 @@ Pokud jsou $phi$ a $psi$ logicky ekvivalentní, $MP(phi) = MP(psi)$, píšeme $p
 
 Pokud jsou výroky ekvivalentní v $T$, _$T$-ekvivalentní_, $MP(T, phi) = MP(T, psi)$, píšeme $phi thin scripts(tilde)_(T) psi$.
 
+Pro prázdnou teorii $T = emptyset$ platí $MP(T) = MP$ a sémantické pojmy vzhledem k teorii $T$ _"fallbacknou"_ na ty původní.
 
 == (P4) Sémantické pojmy o teorii
 
 Dvě teorie jsou ekvivalentní, $T tilde T'$, právě když $MP(T) = MP(T')$.
 
 Teorie $T$ je:
-- _sporná_, jestliže v ní platí $fal$, ekvivalentně jestliže nemá žádný model, ekv. v ní platí všechny výroky
+- _sporná_, jestliže v ní platí $fal$, ekv. jestliže nemá žádný model, ekv. v ní platí všechny výroky#footnote[_ex falso quodlibet_ --- ze sporu plyne cokoliv.]
 - _bezesporná_, pokud není sporná, tj. má model
 - _kompletní_, jestliže není sporná a každý výrok v ní je pravdivý nebo lživý (nemá žádné nezávislé výroky), ekvivalentně má právě jeden model
 
@@ -56,7 +65,7 @@ Teorie $T$ je:
 
 Důsledek teorie $T$ je každý výrok, který v $T$ platí: $CsqP(T) = {phi in VFP | T models phi}$. Pokud je $T$ teorie v jazyce $PP$, můžeme psát $CsqP(T) = {phi in VFP | MP(T) subs MP(phi)}$. Důsledky:
 - $T subs CsqP(T)$
-- $CsqP(T) = CsqP(CsqP(T))$
+- $CsqP(T) = CsqP(CsqP(T))$ (protože množina modelů je pro důsledky stejná)
 - pokud $T subs T'$, pak $CsqP(T) subs CsqP(T')$
 - $phi in CsqP({phi_1, dots, phi_n})$ právě když je výrok $(phi_1 and dots and phi_n) impl phi$ tautologie
 
@@ -69,19 +78,19 @@ Mejme teorii $T$ v jazyce $PP$
 
 Je-li $T$ teorie v jazyce $PP$ a $T'$ v jazyce $PP'$ obsahujícím jazyk $PP$, pak:
 - $T'$ je _jednoduchou_ extenzí $T$, právě když $PP = PP'$ a $MP(T') subs MP(T)$.
-- $T'$ je extenzí $T$, právě když $M_PP'(T') subs M_PP'(T)$. Uvažujeme tedy modely teorie $T$ nad rozšířeným jazykem $PP'$. Jinými slovy restrikce ("zapomenutí" hodnot pro nové výrokové proměnné) libovolného modelu $v in M_PP'(T')$ na původní jazyk $PP$ musí být modelem $T$. Píšeme $v scripts(harpoon.tr)_PP in MP(T)$, nebo ${v scripts(harpoon.tr)_PP in M_PP (T')} subs MP(T)$.
-- $T'$ je _konzervativní_ extenzí $T$, pokud je extenzí a navíc platí, že každý model $T$ lze nějak expandovat na model $T'$ (v jazyce $PP'$). Můžeme psát $v scripts(harpoon.tr)_PP in MP(T)$, nebo ${v scripts(harpoon.tr)_PP in M_PP (T')} = MP(T)$.
+- $T'$ je extenzí $T$, právě když $M_PP'(T') subs M_PP'(T)$. Uvažujeme tedy modely teorie $T$ nad rozšířeným jazykem $PP'$. Jinými slovy restrikce ("zapomenutí" hodnot pro nové výrokové proměnné) libovolného modelu $v in M_PP'(T')$ na původní jazyk $PP$ musí být modelem $T$. Píšeme $v scripts(harpoon.tr)_PP in MP(T)$, nebo ${v scripts(harpoon.tr)_PP in M_PP' (T')} subs MP(T)$.
+- $T'$ je _konzervativní_ extenzí $T$, pokud je extenzí a navíc platí, že každý model $T$ lze nějak expandovat na model $T'$ (v jazyce $PP'$). Můžeme psát $v scripts(harpoon.tr)_PP in MP(T)$, nebo ${v scripts(harpoon.tr)_PP in M_PP' (T')} = MP(T)$. Příkladem je přidání _splnitelných_ axiomů obsahující jen nové proměnné, respektive nepřidá žádný nový důsledek vyjádřitelný v původním jazyce $PP$.
 - $T$ je extenzí $T'$ a naopak právě když mají stejný jazyk a modely, tedy $T ~ T'$.
 
 
 == (P6) Tablo z teorie, tablo důkaz
 
-Strom je neprázdná množina T#footnote[Protože matematici neznají víc jak 4 latinská písmenka] s částečným uspořádáním $scripts(<)_T$, které ma jediný minimální prvek _kořen_, a ve kterém je množina předků libovolného vrcholu dobře uspořádaná.
-- _Větev_ stromu je maximální (tj. nelze do ní přidat další vrcholy stromu) lineárně uspořádaná podmnožina $T$
-- _Uspořádaný strom_ je strom $T$ spolu s lineárním uspořádáním $scripts(<)_L$ množiny synů každého vrcholu. Uspořádání synů označíme _pravolevé_, zatímco $scripts(<)_T$ je _stromové_
-- _Označkovaný strom_ je strom spolu s funkcí $text("label"): V(T) arrow text("Labels")$
+Strom je neprázdná množina T s částečným uspořádáním $scripts(<)_T$, které ma jediný minimální prvek _kořen_, a ve kterém je množina předků libovolného vrcholu dobře uspořádaná.
+- _Větev_ stromu je maximální (tj. nelze do ní přidat další vrcholy stromu) lineárně uspořádaná podmnožina T
+- _Uspořádaný strom_ je strom T spolu s lineárním uspořádáním $scripts(<)_L$ množiny synů každého vrcholu. Uspořádání synů označíme _pravolevé_, zatímco $scripts(<)_T$ je _stromové_
+- _Označkovaný strom_ je strom spolu s funkcí $text("label"): V("T") arrow text("Labels")$
 
-_Položka_ je nápis T$phi$ nebo F$phi$, kde $phi$ je nějaký výrok.
+_Položka_ je nápis T$phi$ nebo F$phi$, kde $phi$ je nějaký výrok.#footnote[Protože matematici neznají víc jak 4 latinská písmenka, teď už tu figurují tři různé "T". Jedno označující teorii, jedno strom a jedno 'pravdivou položku' #emoji.face.smile.slight]
 
 _Konečné tablo z teorie $T$_ je uspořádaný, položkami označkovaný strom zkonstruovaný konečně mnoha z následujících pravidel:
 - jednoprvkový strom označkovaný libovolnou položkou je tablo z teorie $T$
@@ -102,25 +111,6 @@ _Tablo důkaz_ výroku $phi$ z teorie $T$ je _sporné_ tablo z teorie $T$ s polo
 - Položka $P$ je _redukovaná_ na větvi V procházející touto položkou, pokud
   - je tvaru T$p$ resp. F$p$ pro nějakou výrokovou proměnnou $p in PP$, nebo
   - vyskytuje se na V jako kořen atomického tabla
-
-== (P7) Kongruence struktury, faktorstruktura, axiomy rovnosti
-
-Mějme ekvivalenci $~$ na množině $A$, funkci $f: A^n arrow A$ a relaci $R subs A^n$. Říkáme, že $~$ je:
-- _kongruencí_ pro funkci $f$, pokud pro všechna $a_i, b_i in A$ takové, že $a_i ~ b_i$ ($1 <= i <= n$), platí $f(a_1, dots, a_n) ~ f(b_1, dots, b_n)$
-- _kongruencí_ pro relaci $R$, pokud pro všechna $a_i, b_i in A$ takové, že $a_i ~ b_i$ ($1 <= i <= n$), platí $(a_1, dots, a_n) in R$ právě tehdy, když $(b_1, dots, b_n) in R$
-
-_Kongruence struktury_ $cA$ je ekvivalence $~$ na množině $A$, která je kongruencí pro všechny funkce a relace $cA$.
-
-Mějme strukturu $cA$ a její kongruenci. _Faktorstruktura_ (_podílová struktura_) $cA$ podle $~$ je struktura $cA scripts(\/)_(~)$ v témž jazyce, jejíž univerzum $cA scripts(\/)_(~)$ je množina všech rozkladových tříd $A$ podle $~$ a jejíž funkce a relace jsou definované pomocí reprezentantů, tj:
-- $f^(cA scripts(\/)_(~))([a_1]_~, dots, [a_n]_~) = [f^cA (a_1, dots, a_n)]_~$ pro každý n-ární funkční symbol $f$
-- $R^(cA scripts(\/)_(~))([a_1]_~, dots, [a_n]_~)$ právě tehdy, když $R^cA (a_1, dots, a_n)$ pro každý n-ární relační symbol $R$
-
-_Axiomy rovnosti_ pro jazyk $L$ s rovností jsou následující:\
-(i) $x = x$\
-(ii) $x_1 = y_1 and dots and x_n = y_n impl f(x_1, dots, x_n) = f(y_1, dots, y_n)$ pro každý n-ární funkční symbol $f$\
-(iii) $x_1 = y_1 and dots and x_n = y_n impl (R(x_1, dots, x_n) impl R(y_1, dots, y_n))$ pro každý n-ární relační symbol $R$
-
-Z axiomů (i) a (iii) tedy plyne, že relace $scripts(=)^cA$ je ekvivalence na $A$. Axiomy (ii) a (iii) vyjadřují, že $scripts(=)^cA$ je kongruencí $cA$.
 
 == (P8) CNF a DNF, Hornův tvar. Množinová reprezentace CNF formule, splňující ohodnocení
 
@@ -185,7 +175,7 @@ _Struktura_ v signatuře $sig$ je trojice $cA = sl A, cR^cA, cF^cA sr$, kde:
 - $cR^cA = {R^cA | R in cR}$ kde $R^cA subs A^(ar(R))$ je _interpretace_ relačního symbolu $R$
 - $cF^cA = {f^cA | f in cF}$ kde $f^cA: A^ar(f) arrow A$ je interpretace funkčního symbolu $f$ (speciální pro konstantní symbol $c in cF$ máme $c^cA in A$)
 
-Tady se střetávají symboly a významy, kupříkladu: symbol $+$ je binární funkce s aritou 2. Ve struktuře $sl NN, +^NN sr$ je $+^NN$ běžné sčítání: $+^NN (2,3)$ je rovno 5. Kdežto ve struktuře $sl ZZ_5, +^(ZZ_5) sr$ by to bylo sčítání modulo pěti: $+^(ZZ_5)(3,4)$ je rovno 2.
+Tady se střetávají symboly a významy, kupříkladu: symbol $+$ ze signatury $sl + sr$ je binární funkce s aritou 2. Ve struktuře $sl NN, +^NN sr$ je $+^NN$ běžné sčítání: $+^NN (2,3)$ je rovno 5. Kdežto ve struktuře $sl ZZ_5, +^(ZZ_5) sr$ by to bylo sčítání modulo pěti: $+^(ZZ_5)(3,4)$ je rovno 2.
 
 Do _jazyka_ patří následující:
 - spočetně mnoho proměnných
@@ -200,7 +190,7 @@ Do jazyka *nepatří* univerzum.
 
 _Termy_ jazyka $L$ jsou konečné nápisy definované induktivně:
 - každá proměnná a každý konstantní symbol z $L$ je term
-- je-li $f$ funkční symbol z $L$ arit $n$ a jsou-li $t_1, dots, t_n$ termy, potom nápis $f(t_1, dots, t_n)$ je také term
+- je-li $f$ funkční symbol z $L$ arity $n$ a jsou-li $t_1, dots, t_n$ termy, potom nápis $f(t_1, dots, t_n)$ je také term
 
 Term tedy nemůže obsahovat relaci. Pokud term neobsahuje proměnnou, říkáme mu _konstantní_ či _ground_.
 
@@ -260,6 +250,25 @@ Mějme formuli $phi$ a strukturu $cA$ ve stejném jazyce.
 - Je-li $e$ ohodnocení a $PH^cA (phi)[e] = 1$, potom říkáme, že $phi$ _platí_ v $cA$ při ohodnocení $e$, píšeme $cA models phi[e]$. V opačném případě neplatí, $cA tack.double.not phi[e]$
 - Pokud $phi$ platí v $cA$ při každém ohodnocení $e: Var arrow A$, potom říkáme, že $phi$ _je pravdivá, platí_ v $cA$, píšeme $cA models phi$
 - Pokud $cA models not phi$, tj. $phi$ neplatí v $cA$ při žádném ohodnocení (pro každé $e$ máme $cA tack.double.not phi[e]$), potom $phi$ _je lživá_ v $cA$ ("lživá" není totéž co "není pravdivá", to platí jen pro sentence)
+
+== (P7) Kongruence struktury, faktorstruktura, axiomy rovnosti
+
+Mějme ekvivalenci $~$ na množině $A$, funkci $f: A^n arrow A$ a relaci $R subs A^n$. Říkáme, že $~$ je:
+- _kongruencí_ pro funkci $f$, pokud pro všechna $a_i, b_i in A$ takové, že $a_i ~ b_i$ ($1 <= i <= n$), platí $f(a_1, dots, a_n) ~ f(b_1, dots, b_n)$
+- _kongruencí_ pro relaci $R$, pokud pro všechna $a_i, b_i in A$ takové, že $a_i ~ b_i$ ($1 <= i <= n$), platí $(a_1, dots, a_n) in R$ právě tehdy, když $(b_1, dots, b_n) in R$
+
+_Kongruence struktury_ $cA$ je ekvivalence $~$ na množině $A$, která je kongruencí pro všechny funkce a relace $cA$.
+
+Mějme strukturu $cA$ a její kongruenci. _Faktorstruktura_ (_podílová struktura_) $cA$ podle $~$ je struktura $cA scripts(\/)_(~)$ v témž jazyce, jejíž univerzum $cA scripts(\/)_(~)$ je množina všech rozkladových tříd $A$ podle $~$ a jejíž funkce a relace jsou definované pomocí reprezentantů, tj:
+- $f^(cA scripts(\/)_(~))([a_1]_~, dots, [a_n]_~) = [f^cA (a_1, dots, a_n)]_~$ pro každý n-ární funkční symbol $f$
+- $R^(cA scripts(\/)_(~))([a_1]_~, dots, [a_n]_~)$ právě tehdy, když $R^cA (a_1, dots, a_n)$ pro každý n-ární relační symbol $R$
+
+_Axiomy rovnosti_ pro jazyk $L$ s rovností jsou následující:\
+(i) $x = x$\
+(ii) $x_1 = y_1 and dots and x_n = y_n impl f(x_1, dots, x_n) = f(y_1, dots, y_n)$ pro každý n-ární funkční symbol $f$\
+(iii) $x_1 = y_1 and dots and x_n = y_n impl (R(x_1, dots, x_n) impl R(y_1, dots, y_n))$ pro každý n-ární relační symbol $R$
+
+Z axiomů (i) a (iii) tedy plyne, že relace $scripts(=)^cA$ je ekvivalence na $A$. Axiomy (ii) a (iii) vyjadřují, že $scripts(=)^cA$ je kongruencí $cA$.
 
 == (P13) Kompletní teorie v predikátové logice, elementární ekvivalence
 
